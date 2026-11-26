@@ -623,19 +623,19 @@ body {
 }
 
 /* ==========================================================================
-   MINI-JOGO (CANVAS)
+   SIMULADOR DE LINHA (CANVAS)
    ========================================================================== */
 .game-controls {
   display: flex;
   align-items: center;
   flex-wrap: wrap;
-  gap: 0.7rem;
+  gap: 0.65rem;
 }
 
 .game-stat {
   font-family: var(--font-mono);
-  font-size: 0.82rem;
-  padding: 0.45rem 0.85rem;
+  font-size: 0.8rem;
+  padding: 0.45rem 0.8rem;
   border-radius: var(--radius-sm);
   background: var(--bg-box);
   border: 1px solid var(--border-subtle);
@@ -660,8 +660,7 @@ body {
 
 #game-canvas {
   width: 100%;
-  aspect-ratio: 5 / 2;
-  height: auto;
+  height: 320px;
   display: block;
   border-radius: var(--radius-md);
   background: #060a14;
@@ -779,6 +778,10 @@ body {
   .copy-panel,
   .game-card {
     padding: 1.2rem;
+  }
+
+  #game-canvas {
+    height: 250px;
   }
 
   .main-content {
