@@ -1,11 +1,11 @@
 /* ==========================================================================
-   ESTILO MODERNO — CURRÍCULO & PORTFÓLIO (FLEXBOX)
+   ESTILO SUPREMO — CURRÍCULO & PORTFÓLIO (FLEXBOX)
    ========================================================================== */
 :root {
   --bg-page: #050811;
-  --bg-panel: rgba(13, 21, 38, 0.78);
-  --bg-panel-hover: rgba(19, 31, 56, 0.92);
-  --bg-box: rgba(6, 10, 20, 0.85);
+  --bg-panel: rgba(13, 21, 38, 0.82);
+  --bg-panel-hover: rgba(19, 32, 58, 0.94);
+  --bg-box: rgba(6, 10, 20, 0.88);
 
   --text-primary: #f8fafc;
   --text-secondary: #cbd5e1;
@@ -14,19 +14,19 @@
   --accent: #22d3ee;
   --accent-bright: #67e8f9;
   --accent-soft: rgba(34, 211, 238, 0.14);
-  --accent-glow: rgba(34, 211, 238, 0.24);
+  --accent-glow: rgba(34, 211, 238, 0.25);
   --emerald: #34d399;
 
   --border-subtle: rgba(148, 163, 184, 0.16);
-  --border-accent: rgba(34, 211, 238, 0.45);
+  --border-accent: rgba(34, 211, 238, 0.48);
 
   --radius-sm: 10px;
   --radius-md: 16px;
   --radius-lg: 22px;
   --radius-pill: 999px;
 
-  --shadow-main: 0 22px 50px -22px rgba(0, 0, 0, 0.8);
-  --shadow-hover: 0 24px 55px -18px rgba(0, 0, 0, 0.85), 0 0 26px -10px var(--accent-glow);
+  --shadow-main: 0 22px 50px -22px rgba(0, 0, 0, 0.82);
+  --shadow-hover: 0 24px 55px -18px rgba(0, 0, 0, 0.88), 0 0 28px -10px var(--accent-glow);
 
   --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
@@ -62,14 +62,30 @@ body {
   color: var(--text-primary);
   background-color: var(--bg-page);
   background-image:
-    radial-gradient(ellipse 70% 42% at 50% -8%, rgba(34, 211, 238, 0.16), transparent 70%),
-    radial-gradient(circle at 90% 25%, rgba(52, 211, 153, 0.07), transparent 45%);
+    radial-gradient(ellipse 72% 42% at 50% -8%, rgba(34, 211, 238, 0.17), transparent 70%),
+    radial-gradient(circle at 90% 25%, rgba(52, 211, 153, 0.08), transparent 45%);
   -webkit-font-smoothing: antialiased;
 }
 
-/* Container amplo para aproveitar bem telas largas */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent-bright);
+  outline-offset: 3px;
+}
+
 .container {
-  width: min(94%, 1520px);
+  width: min(94%, 1480px);
   margin: 0 auto;
 }
 
@@ -80,7 +96,7 @@ body {
   position: sticky;
   top: 0;
   z-index: 100;
-  background: rgba(5, 8, 17, 0.78);
+  background: rgba(5, 8, 17, 0.8);
   backdrop-filter: blur(16px) saturate(140%);
   -webkit-backdrop-filter: blur(16px) saturate(140%);
   border-bottom: 1px solid var(--border-subtle);
@@ -106,6 +122,7 @@ body {
   font-weight: 600;
   font-size: 0.98rem;
   letter-spacing: 0.03em;
+  border-radius: var(--radius-sm);
 }
 
 .brand-mark {
@@ -229,7 +246,7 @@ body {
   flex: 1 0 auto;
   display: flex;
   flex-direction: column;
-  gap: 2.75rem;
+  gap: 2.85rem;
   padding-top: 2rem;
   padding-bottom: 3.75rem;
 }
@@ -274,9 +291,9 @@ body {
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  padding: 2.1rem 2.3rem;
+  padding: 2.15rem 2.35rem;
   border-radius: var(--radius-lg);
-  background: linear-gradient(155deg, rgba(18, 29, 52, 0.84), rgba(9, 15, 28, 0.94));
+  background: linear-gradient(155deg, rgba(18, 29, 52, 0.86), rgba(9, 15, 28, 0.95));
   backdrop-filter: blur(16px);
   border: 1px solid var(--border-subtle);
   box-shadow: var(--shadow-main);
@@ -292,7 +309,6 @@ body {
   background: linear-gradient(90deg, transparent, var(--accent), var(--emerald), transparent);
 }
 
-.hero-top,
 .hero-badges {
   display: flex;
   flex-wrap: wrap;
@@ -345,7 +361,7 @@ body {
 .hero-summary {
   color: var(--text-secondary);
   font-size: 0.98rem;
-  line-height: 1.68;
+  line-height: 1.7;
 }
 
 .hero-summary strong {
@@ -509,6 +525,12 @@ body {
   gap: 0.75rem;
 }
 
+.copy-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
 .mono-label {
   font-family: var(--font-mono);
   font-size: 0.74rem;
@@ -520,7 +542,7 @@ body {
 .copy-body {
   color: var(--text-secondary);
   font-size: 0.92rem;
-  line-height: 1.7;
+  line-height: 1.72;
 }
 
 /* ==========================================================================
@@ -601,7 +623,64 @@ body {
 }
 
 /* ==========================================================================
-   CONTATO & GERADOR (FLEX)
+   MINI-JOGO (CANVAS)
+   ========================================================================== */
+.game-controls {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+}
+
+.game-stat {
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  padding: 0.45rem 0.85rem;
+  border-radius: var(--radius-sm);
+  background: var(--bg-box);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-muted);
+}
+
+.game-stat strong {
+  color: var(--accent-bright);
+}
+
+.game-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  padding: 1.25rem;
+  border-radius: var(--radius-lg);
+  background: var(--bg-panel);
+  backdrop-filter: blur(14px);
+  border: 1px solid var(--border-subtle);
+  box-shadow: var(--shadow-main);
+}
+
+#game-canvas {
+  width: 100%;
+  aspect-ratio: 5 / 2;
+  height: auto;
+  display: block;
+  border-radius: var(--radius-md);
+  background: #060a14;
+  border: 1px solid var(--border-subtle);
+  touch-action: none;
+  cursor: crosshair;
+}
+
+.game-help {
+  font-size: 0.86rem;
+  color: var(--text-muted);
+}
+
+.game-help strong {
+  color: var(--text-secondary);
+}
+
+/* ==========================================================================
+   CONTATO DIRETO (FLEX)
    ========================================================================== */
 .contact-card {
   display: flex;
@@ -635,7 +714,7 @@ body {
 .contact-lines {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: 0.55rem;
   margin-top: 0.25rem;
   color: var(--text-secondary);
   font-size: 0.94rem;
@@ -644,57 +723,12 @@ body {
 .contact-lines a {
   color: var(--accent-bright);
   text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.2s var(--ease);
 }
 
 .contact-lines a:hover {
-  text-decoration: underline;
-}
-
-.pitch-box {
-  flex: 1.5 1 360px;
-  display: flex;
-  flex-direction: column;
-  gap: 0.65rem;
-}
-
-.pitch-controls {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.55rem;
-}
-
-.pitch-controls input {
-  flex: 1 1 220px;
-}
-
-input,
-textarea {
-  width: 100%;
-  background: var(--bg-box);
-  border: 1px solid var(--border-subtle);
-  border-radius: var(--radius-sm);
-  color: var(--text-primary);
-  font-family: var(--font-sans);
-  font-size: 0.92rem;
-  padding: 0.7rem 0.85rem;
-  transition: border-color 0.2s var(--ease), box-shadow 0.2s var(--ease);
-}
-
-input::placeholder {
-  color: var(--text-muted);
-}
-
-input:focus,
-textarea:focus {
-  outline: none;
-  border-color: var(--accent);
-  box-shadow: 0 0 0 3px var(--accent-soft);
-}
-
-textarea {
-  resize: vertical;
-  min-height: 118px;
-  line-height: 1.58;
+  border-bottom-color: var(--accent-bright);
 }
 
 /* ==========================================================================
@@ -702,7 +736,7 @@ textarea {
    ========================================================================== */
 .footer {
   border-top: 1px solid var(--border-subtle);
-  background: rgba(5, 8, 17, 0.85);
+  background: rgba(5, 8, 17, 0.88);
   padding: 1.35rem 0;
   color: var(--text-muted);
   font-size: 0.86rem;
@@ -717,8 +751,22 @@ textarea {
 }
 
 /* ==========================================================================
-   MOBILE
+   MOVIMENTO REDUZIDO & MOBILE
    ========================================================================== */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .btn,
+  .bento-card,
+  .exp-card,
+  .metric-item,
+  .filter-chip {
+    transition: none;
+  }
+}
+
 @media (max-width: 640px) {
   .container {
     width: min(95%, 100%);
@@ -728,8 +776,9 @@ textarea {
   .bento-card,
   .exp-card,
   .contact-card,
-  .copy-panel {
-    padding: 1.25rem;
+  .copy-panel,
+  .game-card {
+    padding: 1.2rem;
   }
 
   .main-content {
