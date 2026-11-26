@@ -67,7 +67,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const destination = company ? `na ${company}` : "na empresa";
 
     pitchOutput.value =
-      `Olá! Sou Misael Andrejezieski, Operador de Máquinas com mais de 20 anos de experiência na indústria alimentícia (linhas de lácteos, envase Tetra Pak, Serac e Hamba, conhecimentos em elétrica e eletrônica, higienização CIP e certificação NR-12 pelo SENAI e Gov). Atuo no turno noturno (21h40 às 05h00) como backup técnico e referência da equipe, conduzindo DSQs, mediando atritos internos e organizando a estratégia do turno para entregar as metas da gestão. Sou formado em Análise e Desenvolvimento de Sistemas (UniCesumar) com conhecimentos em Power BI, Python, Java, HTML, CSS e JavaScript. Deixo meu currículo à disposição para oportunidades ${destination}: ${portfolioUrl}`;
+      `Olá! Sou Misael Andrejezieski, Operador de Máquinas com mais de 20 anos de experiência na indústria alimentícia (linhas de lácteos, envase Tetra Pak, Serac e Hamba, conhecimentos em elétrica e eletrônica, higienização CIP e certificação NR-12 pelo SENAI e Gov). Atuo no turno noturno (21h40 às 05h00) como backup técnico e referência da equipe, conduzindo DSQs, mediando atritos internos e organizando a estratégia do turno para entregar as metas da gestão. Sou formado em Análise e Desenvolvimento de Sistemas (UniCesumar), com domínio do Pacote Office (Excel, Word e PowerPoint) e conhecimentos em Power BI, Python, Java, HTML, CSS e JavaScript. Deixo meu currículo à disposição para oportunidades ${destination}: ${portfolioUrl}`;
   }
 
   if (companyInput && pitchOutput) {
