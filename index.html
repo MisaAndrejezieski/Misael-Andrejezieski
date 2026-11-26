@@ -23,7 +23,7 @@
         <a href="#competencias">Competências</a>
         <a href="#experiencia">Experiência</a>
         <a href="#formacao">Formação</a>
-        <a href="#jogo">Mini-Jogo</a>
+        <a href="#jogo">Linha & Lógica</a>
         <a href="#contato">Contato</a>
       </nav>
 
@@ -226,25 +226,26 @@
       </div>
     </section>
 
-    <!-- Mini-Jogo Interativo em Canvas + JS -->
+    <!-- Simulador de Linha: Fluxo de Envase & Estabilidade -->
     <section id="jogo" class="section-block no-print" aria-labelledby="title-jogo">
       <div class="section-head">
         <div>
-          <span class="section-kicker">HTML5 CANVAS & JAVASCRIPT</span>
-          <h2 id="title-jogo">Rota da Madrugada</h2>
+          <span class="section-kicker">SIMULADOR DE LINHA • HTML5 CANVAS</span>
+          <h2 id="title-jogo">Fluxo de Envase & Estabilidade</h2>
         </div>
 
         <div class="game-controls">
-          <span class="game-stat">PONTOS: <strong id="game-score">000</strong></span>
+          <span class="game-stat">META: <strong id="game-score">000</strong></span>
           <span class="game-stat">RECORDE: <strong id="game-best">000</strong></span>
-          <button id="btn-game-toggle" class="btn btn-primary" type="button">Iniciar Jogo</button>
+          <span class="game-stat">ESTABILIDADE: <strong id="game-stability">100%</strong></span>
+          <button id="btn-game-toggle" class="btn btn-primary" type="button">Iniciar Turno</button>
         </div>
       </div>
 
       <div class="game-card">
-        <canvas id="game-canvas" width="900" height="360" aria-label="Mini-jogo Rota da Madrugada"></canvas>
+        <canvas id="game-canvas" aria-label="Simulador de fluxo de linha de envase"></canvas>
         <p class="game-help">
-          Use <strong>Setas ↑/↓</strong>, <strong>W/S</strong> ou <strong>arraste no toque/mouse</strong> para desviar dos blocos vermelhos e coletar os bônus verdes (<strong>+3 pts</strong>). Pressione <strong>Espaço</strong> ou <strong>R</strong> para reiniciar após o fim da rodada.
+          Posicione a unidade de envase (ciano) com <strong>Setas ↑/↓</strong>, <strong>W/S</strong> ou <strong>arraste no toque/mouse</strong>: capte os <strong>lotes conformes</strong> (esmeralda, <strong>+2 pts</strong>) e desvie das <strong>falhas críticas</strong> (vermelho, <strong>-25% estabilidade</strong>). Deixar um lote conforme passar sem coletar reduz a estabilidade em <strong>-10%</strong>.
         </p>
       </div>
     </section>
