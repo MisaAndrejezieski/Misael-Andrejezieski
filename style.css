@@ -1,24 +1,41 @@
-/* =========================================================
-   VARIÁVEIS E BASE
-   ========================================================= */
+/* ==========================================================================
+   DESIGN TOKENS — ESTÉTICA ENGENHARIA & TECH MODERNA
+   ========================================================================== */
 :root {
-  --bg-page: #0b1120;
-  --bg-surface: #111827;
-  --bg-card: #162032;
-  --bg-subtle: #0f172a;
-  --text-primary: #f1f5f9;
+  --bg-canvas: #070b14;
+  --bg-elevated: #0d1424;
+  --bg-card: rgba(15, 23, 42, 0.82);
+  --bg-card-hover: rgba(20, 32, 58, 0.96);
+  --bg-inset: #090e1a;
+
+  --text-primary: #f8fafc;
   --text-secondary: #cbd5e1;
-  --text-muted: #94a3b8;
-  --accent: #38bdf8;
-  --accent-hover: #7dd3fc;
-  --accent-soft: rgba(56, 189, 248, 0.12);
-  --border: #26354d;
-  --radius-sm: 8px;
-  --radius-md: 14px;
-  --shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
-  --transition: 0.22s ease;
+  --text-muted: #8695ad;
+
+  --accent-cyan: #22d3ee;
+  --accent-cyan-hover: #67e8f9;
+  --accent-emerald: #34d399;
+  --accent-glow: rgba(34, 211, 238, 0.14);
+
+  --border-subtle: rgba(148, 163, 184, 0.15);
+  --border-strong: rgba(34, 211, 238, 0.38);
+
+  --radius-sm: 10px;
+  --radius-md: 16px;
+  --radius-lg: 22px;
+
+  --shadow-card: 0 18px 40px -18px rgba(0, 0, 0, 0.65);
+  --shadow-glow: 0 0 0 1px var(--border-strong), 0 16px 35px -12px rgba(34, 211, 238, 0.18);
+
+  --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
+/* ==========================================================================
+   RESET & BASE
+   ========================================================================== */
 *,
 *::before,
 *::after {
@@ -29,87 +46,121 @@
 
 html {
   scroll-behavior: smooth;
-  font-size: 16px;
+  scroll-padding-top: 84px;
 }
 
 body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  background:
-    radial-gradient(circle at top right, rgba(56, 189, 248, 0.08), transparent 40%),
-    var(--bg-page);
+  font-family: var(--font-sans);
   color: var(--text-primary);
+  background-color: var(--bg-canvas);
+  background-image:
+    radial-gradient(ellipse 75% 45% at 50% -10%, rgba(34, 211, 238, 0.13), transparent 70%),
+    radial-gradient(circle at 88% 22%, rgba(52, 211, 153, 0.06), transparent 45%),
+    linear-gradient(to right, rgba(148, 163, 184, 0.035) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(148, 163, 184, 0.035) 1px, transparent 1px);
+  background-size: 100% 100%, 100% 100%, 44px 44px, 44px 44px;
   line-height: 1.65;
   -webkit-font-smoothing: antialiased;
 }
 
 .container {
   width: 100%;
-  max-width: 1080px;
+  max-width: 1120px;
   margin: 0 auto;
-  padding: 0 1.25rem;
+  padding: 0 1.5rem;
 }
 
-/* =========================================================
-   CABEÇALHO E NAVEGAÇÃO (FLEX)
-   ========================================================= */
+/* ==========================================================================
+   NAVBAR
+   ========================================================================== */
 .navbar {
   position: sticky;
   top: 0;
   z-index: 100;
-  background-color: rgba(11, 17, 32, 0.88);
-  backdrop-filter: blur(12px);
-  border-bottom: 1px solid var(--border);
-  padding: 0.85rem 0;
+  background: rgba(7, 11, 20, 0.78);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border-subtle);
 }
 
-.nav-content {
+.nav-inner {
+  min-height: 68px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   flex-wrap: wrap;
   gap: 1rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
 }
 
 .brand {
-  font-size: 1.2rem;
-  font-weight: 800;
-  letter-spacing: 0.04em;
-  color: var(--text-primary);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
   text-decoration: none;
+  color: var(--text-primary);
+  font-family: var(--font-mono);
+  font-weight: 600;
+  font-size: 1rem;
+  letter-spacing: 0.04em;
 }
 
-.brand span {
-  color: var(--accent);
+.brand-mark {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--accent-cyan);
+  box-shadow: 0 0 12px var(--accent-cyan);
+}
+
+.brand-accent {
+  color: var(--accent-cyan);
 }
 
 .nav-links {
   display: flex;
   align-items: center;
   flex-wrap: wrap;
-  gap: 0.5rem 1.25rem;
+  gap: 0.35rem 1.4rem;
 }
 
 .nav-links a {
-  color: var(--text-secondary);
+  position: relative;
   text-decoration: none;
-  font-size: 0.92rem;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
   font-weight: 500;
-  padding: 0.25rem 0;
-  border-bottom: 2px solid transparent;
-  transition: color var(--transition), border-color var(--transition);
+  padding: 0.3rem 0;
+  transition: color 0.2s var(--ease);
+}
+
+.nav-links a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0;
+  height: 2px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--accent-cyan), var(--accent-emerald));
+  transition: width 0.25s var(--ease);
 }
 
 .nav-links a:hover {
-  color: var(--accent);
-  border-bottom-color: var(--accent);
+  color: var(--text-primary);
 }
 
-/* =========================================================
+.nav-links a:hover::after {
+  width: 100%;
+}
+
+/* ==========================================================================
    BOTÕES
-   ========================================================= */
+   ========================================================================== */
 .btn {
   display: inline-flex;
   align-items: center;
@@ -117,12 +168,18 @@ body {
   gap: 0.45rem;
   padding: 0.65rem 1.15rem;
   border-radius: var(--radius-sm);
-  font-size: 0.9rem;
+  font-family: var(--font-sans);
+  font-size: 0.88rem;
   font-weight: 600;
   text-decoration: none;
   cursor: pointer;
   border: 1px solid transparent;
-  transition: transform var(--transition), background-color var(--transition), border-color var(--transition), color var(--transition);
+  transition:
+    background-color 0.2s var(--ease),
+    border-color 0.2s var(--ease),
+    color 0.2s var(--ease),
+    transform 0.18s var(--ease),
+    box-shadow 0.2s var(--ease);
 }
 
 .btn:active {
@@ -130,448 +187,540 @@ body {
 }
 
 .btn-primary {
-  background-color: var(--accent);
-  color: #061220;
+  background: linear-gradient(135deg, var(--accent-cyan), #38bdf8);
+  color: #04101c;
+  box-shadow: 0 8px 20px -8px rgba(34, 211, 238, 0.55);
 }
 
 .btn-primary:hover {
-  background-color: var(--accent-hover);
+  background: linear-gradient(135deg, var(--accent-cyan-hover), #7dd3fc);
+  transform: translateY(-1px);
 }
 
-.btn-outline {
-  background-color: transparent;
-  border-color: var(--accent);
-  color: var(--accent);
-}
-
-.btn-outline:hover {
-  background-color: var(--accent-soft);
-}
-
-.btn-small {
-  padding: 0.4rem 0.8rem;
-  font-size: 0.8rem;
-  background-color: var(--bg-subtle);
-  border-color: var(--border);
+.btn-ghost {
+  background: rgba(255, 255, 255, 0.02);
+  border-color: var(--border-subtle);
   color: var(--text-primary);
 }
 
-.btn-small:hover {
-  background-color: var(--accent);
-  border-color: var(--accent);
-  color: #061220;
+.btn-ghost:hover {
+  border-color: var(--border-strong);
+  background: var(--accent-glow);
+  color: var(--accent-cyan);
 }
 
-/* =========================================================
-   ESTRUTURA PRINCIPAL E CARDS
-   ========================================================= */
-main {
+.btn-secondary {
+  background: var(--bg-inset);
+  border-color: var(--border-subtle);
+  color: var(--text-primary);
+  font-size: 0.82rem;
+  padding: 0.48rem 0.9rem;
+}
+
+.btn-secondary:hover {
+  border-color: var(--accent-cyan);
+  color: var(--accent-cyan);
+}
+
+/* ==========================================================================
+   CONTEÚDO PRINCIPAL & SEÇÕES
+   ========================================================================== */
+.main-content {
   flex: 1 0 auto;
   display: flex;
   flex-direction: column;
-  gap: 2.5rem;
-  padding: 2rem 0 3.5rem;
+  gap: 3.25rem;
+  padding-top: 2.25rem;
+  padding-bottom: 4rem;
 }
 
-.section {
+.section-block {
   display: flex;
   flex-direction: column;
-  gap: 1.15rem;
+  gap: 1.35rem;
 }
 
-.card {
-  background-color: var(--bg-card);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-md);
-  padding: 1.65rem;
-  box-shadow: var(--shadow);
-  transition: border-color var(--transition), transform var(--transition);
+.section-head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
 }
 
-h1 {
-  font-size: clamp(1.85rem, 3.5vw, 2.5rem);
-  font-weight: 800;
-  line-height: 1.18;
+.section-kicker {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  color: var(--accent-cyan);
+  margin-bottom: 0.3rem;
+}
+
+.section-head h2 {
+  font-size: clamp(1.45rem, 2.4vw, 1.85rem);
+  font-weight: 700;
   letter-spacing: -0.02em;
+  line-height: 1.2;
 }
 
-h2 {
-  font-size: 1.35rem;
-  font-weight: 700;
-  color: var(--text-primary);
-  border-left: 4px solid var(--accent);
-  padding-left: 0.75rem;
-}
-
-h3 {
-  font-size: 1.08rem;
-  font-weight: 700;
-  color: var(--accent);
-  margin-bottom: 0.4rem;
-}
-
-/* =========================================================
+/* ==========================================================================
    HERO
-   ========================================================= */
-.hero {
+   ========================================================================== */
+.hero-card {
+  position: relative;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
-  gap: 0.9rem;
+  gap: 1.1rem;
+  padding: 2.25rem;
+  border-radius: var(--radius-lg);
+  background:
+    linear-gradient(145deg, rgba(22, 34, 62, 0.78), rgba(11, 18, 34, 0.92));
+  border: 1px solid var(--border-subtle);
+  box-shadow: var(--shadow-card);
 }
 
+.hero-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--accent-cyan), var(--accent-emerald), transparent);
+  opacity: 0.85;
+}
+
+.hero-top,
 .hero-badges {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.5rem;
+  align-items: center;
+  gap: 0.55rem;
 }
 
-.badge {
+.pill {
   display: inline-flex;
   align-items: center;
-  padding: 0.3rem 0.75rem;
+  padding: 0.32rem 0.8rem;
   border-radius: 999px;
-  font-size: 0.8rem;
+  font-family: var(--font-mono);
+  font-size: 0.76rem;
   font-weight: 500;
-  background-color: var(--bg-subtle);
-  border: 1px solid var(--border);
+  background: var(--bg-inset);
+  border: 1px solid var(--border-subtle);
   color: var(--text-secondary);
 }
 
-.badge-accent {
-  background-color: var(--accent-soft);
-  border-color: rgba(56, 189, 248, 0.45);
-  color: var(--accent);
-  font-weight: 600;
+.pill-cyan {
+  background: rgba(34, 211, 238, 0.1);
+  border-color: rgba(34, 211, 238, 0.35);
+  color: var(--accent-cyan);
 }
 
-.subtitle {
+.pill-emerald {
+  background: rgba(52, 211, 153, 0.1);
+  border-color: rgba(52, 211, 153, 0.35);
+  color: var(--accent-emerald);
+}
+
+.hero-title {
+  font-size: clamp(2.1rem, 4.5vw, 3.1rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  background: linear-gradient(180deg, #ffffff 0%, #cbd5e1 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.hero-role {
   font-size: 1.05rem;
   font-weight: 600;
-  color: var(--accent);
+  color: var(--accent-cyan);
+  max-width: 82ch;
 }
 
-.bio {
+.hero-summary {
   color: var(--text-secondary);
-  max-width: 82ch;
+  font-size: 1rem;
+  max-width: 84ch;
+}
+
+.hero-summary strong {
+  color: var(--text-primary);
+  font-weight: 600;
 }
 
 .hero-actions {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.85rem;
-  margin-top: 0.35rem;
+  gap: 0.75rem;
+  padding-top: 0.25rem;
 }
 
-/* =========================================================
-   COMPETÊNCIAS (FLEX RESPONSIVO + FILTROS)
-   ========================================================= */
-.section-header {
+/* Faixa de Métricas */
+.metrics-strip {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
   flex-wrap: wrap;
-  gap: 1rem;
+  gap: 0.85rem;
+  margin-top: 0.65rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--border-subtle);
 }
 
-.filter-group {
+.metric-item {
+  flex: 1 1 170px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  padding: 0.85rem 1rem;
+  border-radius: var(--radius-sm);
+  background: var(--bg-inset);
+  border: 1px solid var(--border-subtle);
+}
+
+.metric-value {
+  font-family: var(--font-mono);
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.metric-label {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+/* ==========================================================================
+   FILTROS & GRID FLEX DE CARDS
+   ========================================================================== */
+.filter-bar {
   display: flex;
   flex-wrap: wrap;
   gap: 0.45rem;
 }
 
-.filter-btn {
-  padding: 0.42rem 0.85rem;
-  border-radius: var(--radius-sm);
-  border: 1px solid var(--border);
-  background-color: var(--bg-card);
+.filter-chip {
+  padding: 0.45rem 0.9rem;
+  border-radius: 999px;
+  border: 1px solid var(--border-subtle);
+  background: var(--bg-card);
   color: var(--text-secondary);
-  font-size: 0.85rem;
+  font-family: var(--font-sans);
+  font-size: 0.84rem;
   font-weight: 500;
   cursor: pointer;
-  transition: all var(--transition);
+  transition: all 0.2s var(--ease);
 }
 
-.filter-btn:hover {
-  border-color: var(--accent);
-  color: var(--accent);
+.filter-chip:hover {
+  border-color: var(--border-strong);
+  color: var(--text-primary);
 }
 
-.filter-btn.active {
-  background-color: var(--accent);
-  border-color: var(--accent);
-  color: #061220;
+.filter-chip.active {
+  background: var(--accent-cyan);
+  border-color: var(--accent-cyan);
+  color: #04101c;
   font-weight: 700;
 }
 
-.skills-grid {
+.cards-flex {
   display: flex;
   flex-wrap: wrap;
-  gap: 1rem;
+  gap: 1.1rem;
 }
 
-.skill-card {
-  flex: 1 1 300px;
+.bento-card {
+  flex: 1 1 310px;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  gap: 0.55rem;
+  padding: 1.5rem;
+  border-radius: var(--radius-md);
+  background: var(--bg-card);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--border-subtle);
+  box-shadow: var(--shadow-card);
+  transition: transform 0.25s var(--ease), border-color 0.25s var(--ease), background 0.25s var(--ease);
 }
 
-.skill-card:hover {
-  transform: translateY(-3px);
-  border-color: rgba(56, 189, 248, 0.55);
+.bento-card:hover {
+  transform: translateY(-4px);
+  background: var(--bg-card-hover);
+  border-color: var(--border-strong);
+  box-shadow: var(--shadow-glow);
 }
 
-.skill-card.hidden {
+.bento-card.hidden {
   display: none;
 }
 
-.skill-card p {
+.card-tag {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  color: var(--accent-cyan);
+}
+
+.bento-card h3 {
+  font-size: 1.12rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1.3;
+}
+
+.bento-card p {
+  color: var(--text-secondary);
+  font-size: 0.93rem;
+}
+
+/* Caixa Copiável */
+.copy-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  padding: 1.4rem 1.5rem;
+  border-radius: var(--radius-md);
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-subtle);
+}
+
+.copy-panel-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.mono-label {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+}
+
+.copy-body {
+  color: var(--text-secondary);
+  font-size: 0.92rem;
+  line-height: 1.7;
+}
+
+/* ==========================================================================
+   EXPERIÊNCIA PROFISSIONAL
+   ========================================================================== */
+.exp-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+}
+
+.exp-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.95rem;
+  padding: 1.65rem;
+  border-radius: var(--radius-md);
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  box-shadow: var(--shadow-card);
+}
+
+.exp-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.exp-header h3 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.exp-sub {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  margin-top: 0.15rem;
+}
+
+.exp-date {
+  padding: 0.35rem 0.85rem;
+  border-radius: 999px;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--accent-cyan);
+  background: rgba(34, 211, 238, 0.08);
+  border: 1px solid rgba(34, 211, 238, 0.28);
+  white-space: nowrap;
+}
+
+.exp-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  padding-left: 1.2rem;
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+}
+
+.exp-list strong {
+  color: var(--text-primary);
+}
+
+/* ==========================================================================
+   CONTATO & GERADOR
+   ========================================================================== */
+.contact-card {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  padding: 1.75rem;
+  border-radius: var(--radius-lg);
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  box-shadow: var(--shadow-card);
+}
+
+.contact-details {
+  flex: 1 1 280px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.contact-details h3 {
+  font-size: 1.3rem;
+  font-weight: 700;
+}
+
+.contact-location {
+  color: var(--text-muted);
+  font-size: 0.92rem;
+}
+
+.contact-lines {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-top: 0.25rem;
   color: var(--text-secondary);
   font-size: 0.94rem;
 }
 
-/* Caixa de Resumo Copiável */
-.copy-box {
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-  background-color: var(--bg-surface);
+.contact-lines a {
+  color: var(--accent-cyan);
+  text-decoration: none;
 }
 
-.copy-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 0.75rem;
+.contact-lines a:hover {
+  text-decoration: underline;
 }
 
-.copy-box p {
-  color: var(--text-secondary);
-  font-size: 0.92rem;
-}
-
-/* =========================================================
-   TRAJETÓRIA PROFISSIONAL (FLEX)
-   ========================================================= */
-.timeline {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-
-.timeline-item {
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-}
-
-.timeline-header {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 0.75rem;
-}
-
-.company {
-  display: block;
-  color: var(--text-muted);
-  font-size: 0.92rem;
-  margin-top: 0.15rem;
-}
-
-.period {
-  padding: 0.3rem 0.75rem;
-  border-radius: var(--radius-sm);
-  background-color: var(--bg-subtle);
-  border: 1px solid var(--border);
-  color: var(--accent);
-  font-size: 0.84rem;
-  font-weight: 700;
-  white-space: nowrap;
-}
-
-.timeline-item ul {
-  display: flex;
-  flex-direction: column;
-  gap: 0.45rem;
-  padding-left: 1.25rem;
-  color: var(--text-secondary);
-}
-
-/* =========================================================
-   CERTIFICAÇÕES & PERFIL DEV (FLEX)
-   ========================================================= */
-.two-cols {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1.25rem;
-}
-
-.two-cols > .card {
-  flex: 1 1 340px;
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-
-.cert-list {
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-}
-
-.cert-list li {
-  display: flex;
-  flex-direction: column;
-  gap: 0.15rem;
-  padding: 0.8rem 0;
-  border-bottom: 1px solid var(--border);
-}
-
-.cert-list li:first-child {
-  padding-top: 0.1rem;
-}
-
-.cert-list li:last-child {
-  padding-bottom: 0;
-  border-bottom: none;
-}
-
-.cert-list strong {
-  color: var(--text-primary);
-  font-size: 0.96rem;
-}
-
-.cert-list span {
-  color: var(--text-muted);
-  font-size: 0.86rem;
-}
-
-.dev-card p {
-  color: var(--text-secondary);
-  flex: 1 0 auto;
-}
-
-/* =========================================================
-   CONTATO E GERADOR DE ABORDAGEM (FLEX)
-   ========================================================= */
-.contact-grid {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1.75rem;
-  align-items: flex-start;
-}
-
-.contact-info {
-  flex: 1 1 280px;
+.pitch-box {
+  flex: 1.45 1 340px;
   display: flex;
   flex-direction: column;
   gap: 0.65rem;
 }
 
-.contact-info p {
-  color: var(--text-secondary);
-  word-break: break-word;
-}
-
-.contact-info a {
-  color: var(--accent);
-  text-decoration: none;
-}
-
-.contact-info a:hover {
-  text-decoration: underline;
-}
-
-.pitch-generator {
-  flex: 1.4 1 340px;
-  display: flex;
-  flex-direction: column;
-  gap: 0.6rem;
-}
-
-.input-row {
+.pitch-controls {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.5rem;
+  gap: 0.55rem;
 }
 
-.input-row input {
-  flex: 1 1 200px;
+.pitch-controls input {
+  flex: 1 1 220px;
 }
 
 input,
 textarea {
   width: 100%;
-  background-color: var(--bg-subtle);
-  border: 1px solid var(--border);
+  background: var(--bg-inset);
+  border: 1px solid var(--border-subtle);
   border-radius: var(--radius-sm);
   color: var(--text-primary);
-  padding: 0.65rem 0.8rem;
-  font-family: inherit;
+  font-family: var(--font-sans);
   font-size: 0.92rem;
-  transition: border-color var(--transition);
+  padding: 0.7rem 0.85rem;
+  transition: border-color 0.2s var(--ease), box-shadow 0.2s var(--ease);
 }
 
 input:focus,
 textarea:focus {
   outline: none;
-  border-color: var(--accent);
+  border-color: var(--accent-cyan);
+  box-shadow: 0 0 0 3px rgba(34, 211, 238, 0.14);
 }
 
 textarea {
   resize: vertical;
-  min-height: 105px;
+  min-height: 118px;
+  line-height: 1.55;
 }
 
-/* =========================================================
+/* ==========================================================================
    RODAPÉ
-   ========================================================= */
+   ========================================================================== */
 .footer {
-  border-top: 1px solid var(--border);
-  background-color: var(--bg-surface);
-  padding: 1.4rem 0;
-  text-align: center;
+  border-top: 1px solid var(--border-subtle);
+  background: var(--bg-elevated);
+  padding: 1.35rem 0;
   color: var(--text-muted);
-  font-size: 0.88rem;
+  font-size: 0.86rem;
 }
 
-/* =========================================================
-   AJUSTES MOBILE
-   ========================================================= */
+.footer-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+/* ==========================================================================
+   RESPONSIVIDADE MOBILE
+   ========================================================================== */
 @media (max-width: 640px) {
-  .card {
+  .container {
+    padding: 0 1rem;
+  }
+
+  .hero-card,
+  .bento-card,
+  .exp-card,
+  .contact-card {
     padding: 1.25rem;
   }
 
+  .main-content {
+    gap: 2.35rem;
+    padding-top: 1.35rem;
+  }
+
   .nav-links {
-    gap: 0.4rem 0.9rem;
-  }
-
-  .btn {
-    width: 100%;
-  }
-
-  .hero-actions .btn,
-  .input-row .btn,
-  .btn-small {
-    width: auto;
-  }
-
-  .input-row .btn {
-    flex: 1 1 auto;
+    gap: 0.25rem 0.9rem;
   }
 }
 
-/* =========================================================
-   MODO IMPRESSÃO (A4 LIMPO)
-   ========================================================= */
+/* ==========================================================================
+   MODO IMPRESSÃO (CURRÍCULO A4 LIMPO)
+   ========================================================================== */
 @media print {
   body {
     background: #ffffff;
-    color: #111827;
+    color: #0f172a;
     font-size: 10.5pt;
   }
 
@@ -584,53 +733,59 @@ textarea {
     padding: 0;
   }
 
-  main {
-    gap: 1rem;
+  .main-content {
+    gap: 1.1rem;
     padding: 0;
   }
 
-  .card {
+  .hero-card,
+  .bento-card,
+  .exp-card,
+  .contact-card {
     background: #ffffff;
-    border: 1px solid #d1d5db;
+    border: 1px solid #cbd5e1;
     box-shadow: none;
     padding: 1rem;
     break-inside: avoid;
   }
 
-  h1 {
-    font-size: 18pt;
-    color: #000000;
+  .hero-card::before {
+    display: none;
   }
 
-  h2 {
-    font-size: 12.5pt;
-    color: #000000;
-    border-left-color: #111827;
+  .hero-title {
+    background: none;
+    color: #0f172a;
+    font-size: 19pt;
   }
 
-  h3,
-  .subtitle,
-  .period {
-    color: #111827;
+  .hero-role,
+  .card-tag,
+  .section-kicker,
+  .exp-date,
+  .contact-lines a {
+    color: #0f172a;
   }
 
-  .bio,
-  .skill-card p,
-  .timeline-item ul,
-  .cert-list span,
-  .dev-card p,
-  .contact-info p {
-    color: #374151;
+  .hero-summary,
+  .bento-card p,
+  .exp-list,
+  .exp-sub,
+  .contact-location,
+  .contact-lines,
+  .metric-label {
+    color: #334155;
   }
 
-  .badge,
-  .period {
-    background: #f3f4f6;
-    border-color: #9ca3af;
-    color: #111827;
+  .pill,
+  .metric-item,
+  .exp-date {
+    background: #f8fafc;
+    border-color: #cbd5e1;
+    color: #0f172a;
   }
 
-  .skill-card.hidden {
+  .bento-card.hidden {
     display: flex !important;
   }
 }
