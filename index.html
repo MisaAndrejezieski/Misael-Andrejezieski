@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Misael Andrejezieski | Operador de Máquinas Especializado & Tech</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Inter e JetBrains Mono para detalhes técnicos -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <!-- Font Awesome para ícones industriais e técnicos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    colors: {
+                        navy: {
+                            950: '#060d1a',
+                            900: '#0a1628',
+                            800: '#112240',
+                            700: '#1d3557',
+                        },
+                        electric: {
+                            400: '#38bdf8',
+                            500: '#0ea5e9',
+                            600: '#0284c7',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Estilos personalizados para estética Industrial Tech */
+        .bg-grid-pattern {
+            background-image: radial-gradient(rgba(56, 189, 248, 0.12) 1px, transparent 1px);
+            background-size: 24px 24px;
+        }
+
+        .glass-card {
+            background: rgba(17, 34, 64, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(56, 189, 248, 0.15);
+        }
+
+        /* Estilos otimizados para impressão / geração de PDF limpo */
+        @media print {
+            body {
+                background: #ffffff !important;
+                color: #0f172a !important;
+                font-size: 11pt;
+            }
+            .no-print {
+                display: none !important;
+            }
+            .print-only {
+                display: block !important;
+            }
+            .print-reset {
+                background: #ffffff !important;
+                color: #0f172a !important;
+                border: 1px solid #cbd5e1 !important;
+                box-shadow: none !important;
+                padding: 12px !important;
+                margin-bottom: 12px !important;
+            }
+            .print-text-dark {
+                color: #0f172a !important;
+            }
+            .print-text-muted {
+                color: #475569 !important;
+            }
+            .print-badge {
+                background: #f1f5f9 !important;
+                color: #0f172a !important;
+                border: 1px solid #94a3b8 !important;
+            }
+            section {
+                padding-top: 12px !important;
+                padding-bottom: 12px !important;
+                page-break-inside: avoid;
+            }
+            header {
+                background: #ffffff !important;
+                color: #0f172a !important;
+                padding-top: 0 !important;
+                padding-bottom: 16px !important;
+                border-bottom: 2px solid #0284c7 !important;
+            }
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans antialiased selection:bg-electric-500 selection:text-white">
+
+    <!-- Barra de Navegação Superior (Oculta na impressão) -->
+    <nav class="no-print sticky top-0 z-50 bg-navy-950/90 backdrop-blur-md border-b border-slate-800/80 text-white">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <a href="#" class="flex items-center gap-2.5 group">
+                    <div class="w-9 h-9 rounded-lg bg-gradient-to-br from-electric-500 to-blue-700 flex items-center justify-center text-white font-mono font-bold text-sm shadow-lg shadow-electric-500/20 group-hover:scale-105 transition">
+                        MA
+                    </div>
+                    <div>
+                        <span class="font-bold tracking-tight text-sm sm:text-base block leading-none">Misael Andrejezieski</span>
+                        <span class="text-[11px] font-mono text-electric-400">OPERADOR SPECIALIST & DEV</span>
+                    </div>
+                </a>
+
+                <!-- Menu Desktop -->
+                <div class="hidden md:flex items-center gap-6 text-sm font-medium text-slate-300">
+                    <a href="#competencias" class="hover:text-electric-400 transition">Competências</a>
+                    <a href="#experiencia" class="hover:text-electric-400 transition">Experiência</a>
+                    <a href="#certificacoes" class="hover:text-electric-400 transition">NR-12</a>
+                    <a href="#diferencial-tech" class="hover:text-electric-400 transition">Diferencial Tech</a>
+                    <a href="#contato" class="hover:text-electric-400 transition">Contato</a>
+                </div>
+
+                <!-- Botão Imprimir / PDF -->
+                <div class="flex items-center gap-2">
+                    <button onclick="window.print()" class="inline-flex items-center gap-2 px-3.5 py-2 rounded-lg bg-electric-600 hover:bg-electric-500 text-white text-xs sm:text-sm font-semibold transition shadow-md shadow-electric-600/20 cursor-pointer">
+                        <i class="fa-solid fa-file-pdf"></i>
+                        <span>Salvar PDF</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <header class="bg-navy-950 bg-grid-pattern text-white pt-12 pb-16 sm:pt-16 sm:pb-24 border-b border-slate-800 relative overflow-hidden">
+        <!-- Efeito visual de fundo -->
+        <div class="no-print absolute -top-24 -right-24 w-96 h-96 bg-electric-500/10 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="no-print absolute -bottom-24 -left-24 w-80 h-80 bg-blue-600/10 rounded-full blur-3xl pointer-events-none"></div>
+
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <!-- Status Badge -->
+            <div class="flex flex-wrap items-center gap-3 mb-6">
+                <span class="print-badge inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-semibold bg-emerald-500/15 text-emerald-300 border border-emerald-500/30">
+                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse no-print"></span>
+                    Disponível para Carambeí, Castro e Ponta Grossa - PR
+                </span>
+                <span class="print-badge inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-mono bg-navy-800 text-electric-400 border border-electric-500/20">
+                    <i class="fa-solid fa-industry"></i> +20 Anos de Indústria
+                </span>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+                <div class="lg:col-span-8">
+                    <h1 class="print-text-dark text-3xl sm:text-5xl font-extrabold tracking-tight text-white leading-tight mb-3">
+                        Misael Andrejezieski
+                    </h1>
+                    <h2 class="text-lg sm:text-2xl font-semibold text-electric-400 print-text-dark mb-5">
+                        Operador de Máquinas Especializado | Indústria Alimentícia & Lácteos
+                    </h2>
+                    <p class="print-text-muted text-slate-300 text-base sm:text-lg leading-relaxed max-w-3xl mb-8">
+                        Profissional com mais de duas décadas de experiência na operação de linhas de produção de lácteos (iogurtes e pudins), com domínio técnico em equipamentos <strong class="text-white print-text-dark">Tetra Pak, Serac, Hamba e pasteurizadores</strong>. Alio rigor operacional, higienização <strong class="text-white print-text-dark">CIP</strong>, certificação <strong class="text-white print-text-dark">NR-12</strong> e atuação como <strong class="text-white print-text-dark">backup técnico noturno</strong> a uma visão analítica de <strong class="text-electric-400 print-text-dark">programação e lógica de sistemas</strong>.
+                    </p>
+
+                    <!-- Botões de Ação (Ocultos na impressão) -->
+                    <div class="no-print flex flex-wrap gap-3.5">
+                        <a href="#contato" class="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-electric-500 hover:bg-electric-400 text-navy-950 font-bold text-sm sm:text-base transition shadow-lg shadow-electric-500/25">
+                            <i class="fa-solid fa-paper-plane"></i>
+                            Entrar em Contato
+                        </a>
+                        <button onclick="window.print()" class="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-navy-800 hover:bg-navy-700 text-white border border-slate-700 font-semibold text-sm sm:text-base transition cursor-pointer">
+                            <i class="fa-solid fa-print"></i>
+                            Imprimir / Baixar Currículo (PDF)
+                        </button>
+                        <a href="https://misaandrejezieski.github.io/Misa/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2 px-5 py-3.5 rounded-xl bg-transparent hover:bg-white/5 text-slate-300 border border-slate-700/80 font-medium text-sm sm:text-base transition">
+                            <i class="fa-solid fa-code text-electric-400"></i>
+                            Portfólio Dev
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Card de Métricas Rápidas -->
+                <div class="lg:col-span-4">
+                    <div class="glass-card print-reset rounded-2xl p-6 space-y-4">
+                        <div class="flex items-center justify-between border-b border-slate-700/70 pb-3">
+                            <span class="text-xs font-mono uppercase tracking-wider text-slate-400 print-text-muted">Painel de Qualificações</span>
+                            <span class="no-print px-2 py-0.5 text-[10px] font-mono rounded bg-emerald-500/20 text-emerald-300">ONLINE</span>
+                        </div>
+                        
+                        <div class="grid grid-cols-2 gap-3">
+                            <div class="bg-navy-900/80 print-reset p-3.5 rounded-xl border border-slate-800">
+                                <div class="text-2xl font-extrabold text-electric-400 print-text-dark">+20</div>
+                                <div class="text-xs text-slate-400 print-text-muted mt-0.5">Anos em Lácteos & Alimentos</div>
+                            </div>
+                            <div class="bg-navy-900/80 print-reset p-3.5 rounded-xl border border-slate-800">
+                                <div class="text-2xl font-extrabold text-emerald-400 print-text-dark">NR-12</div>
+                                <div class="text-xs text-slate-400 print-text-muted mt-0.5">SENAI & Gov.br Certificados</div>
+                            </div>
+                            <div class="bg-navy-900/80 print-reset p-3.5 rounded-xl border border-slate-800">
+                                <div class="text-lg font-bold text-white print-text-dark font-mono">21:40–05:00</div>
+                                <div class="text-xs text-slate-400 print-text-muted mt-0.5">Backup Técnico Noturno</div>
+                            </div>
+                            <div class="bg-navy-900/80 print-reset p-3.5 rounded-xl border border-slate-800">
+                                <div class="text-lg font-bold text-amber-400 print-text-dark">CIP & BPF</div>
+                                <div class="text-xs text-slate-400 print-text-muted mt-0.5">Qualidade & Segurança</div>
+                            </div>
+                        </div>
+
+                        <div class="pt-1 text-xs text-slate-300 print-text-muted flex items-center gap-2">
+                            <i class="fa-solid fa-location-dot text-electric-400"></i>
+                            <span>Carambeí • Castro • Ponta Grossa (PR)</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- CONTEÚDO PRINCIPAL -->
+    <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 space-y-16">
+
+        <!-- SEÇÃO 1: COMPETÊNCIAS TÉCNICAS COM FILTROS INTERATIVOS -->
+        <section id="competencias">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">
+                <div>
+                    <span class="text-xs font-mono font-semibold uppercase tracking-wider text-electric-600">Domínio Operacional</span>
+                    <h3 class="text-2xl sm:text-3xl font-bold text-navy-900 mt-1">Competências Técnicas & Equipamentos</h3>
+                </div>
+
+                <!-- Botões de Filtro (Ocultos na impressão) -->
+                <div class="no-print flex flex-wrap gap-2" id="skill-filters">
+                    <button data-filter="all" class="filter-btn active px-3.5 py-2 rounded-lg text-xs font-semibold bg-navy-900 text-white transition cursor-pointer">
+                        Todas (6)
+                    </button>
+                    <button data-filter="equipamentos" class="filter-btn px-3.5 py-2 rounded-lg text-xs font-semibold bg-white text-slate-600 hover:bg-slate-100 border border-slate-200 transition cursor-pointer">
+                        Equipamentos & Envase
+                    </button>
+                    <button data-filter="processos" class="filter-btn px-3.5 py-2 rounded-lg text-xs font-semibold bg-white text-slate-600 hover:bg-slate-100 border border-slate-200 transition cursor-pointer">
+                        Processos & Qualidade
+                    </button>
+                    <button data-filter="manutencao" class="filter-btn px-3.5 py-2 rounded-lg text-xs font-semibold bg-white text-slate-600 hover:bg-slate-100 border border-slate-200 transition cursor-pointer">
+                        Manutenção & Turno
+                    </button>
+                    <button data-filter="tech" class="filter-btn px-3.5 py-2 rounded-lg text-xs font-semibold bg-white text-slate-600 hover:bg-slate-100 border border-slate-200 transition cursor-pointer">
+                        Tecnologia & Lógica
+                    </button>
+                </div>
+            </div>
+
+            <!-- Grid de Cards de Competências -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="skills-grid">
+                <!-- Card 1 -->
+                <div data-category="equipamentos" class="skill-card print-reset bg-white rounded-2xl p-6 shadow-sm border border-slate-200/80 hover:border-electric-500/50 hover:shadow-md transition">
+                    <div class="w-11 h-11 rounded-xl bg-blue-50 text-electric-600 flex items-center justify-center text-lg mb-4 no-print">
+                        <i class="fa-solid fa-gears"></i>
+                    </div>
+                    <h4 class="font-bold text-navy-900 text-lg mb-2">Máquinas de Envase</h4>
+                    <p class="text-slate-600 text-sm leading-relaxed mb-4">
+                        Domínio prático na operação, setup, ajuste fino e monitoramento de envasadoras de alta precisão para linhas de iogurtes e pudins.
+                    </p>
+                    <div class="flex flex-wrap gap-1.5">
+                        <span class="px-2.5 py-1 rounded-md bg-slate-100 text-navy-800 font-mono text-xs font-semibold">Tetra Pak</span>
+                        <span class="px-2.5 py-1 rounded-md bg-slate-100 text-navy-800 font-mono text-xs font-semibold">Serac</span>
+                        <span class="px-2.5 py-1 rounded-md bg-slate-100 text-navy-800 font-mono text-xs font-semibold">Hamba</span>
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div data-category="equipamentos" class="skill-card print-reset bg-white rounded-2xl p-6 shadow-sm border border-slate-200/80 hover:border-electric-500/50 hover:shadow-md transition">
+                    <div class="w-11 h-11 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center text-lg mb-4 no-print">
+                        <i class="fa-solid fa-temperature-high"></i>
+                    </div>
+                    <h4 class="font-bold text-navy-900 text-lg mb-2">Processos Térmicos & Pasteurização</h4>
+                    <p class="text-slate-600 text-sm leading-relaxed mb-4">
+                        Controle rigoroso de temperatura, vazão e tempo de retenção em pasteurizadores, garantindo estabilidade microbiológica e padrão do produto.
+                    </p>
+                    <div class="flex flex-wrap gap-1.5">
+                        <span class="px-2.5 py-1 rounded-md bg-slate-100 text-navy-800 font-mono text-xs font-semibold">Pasteurizadores</span>
+                        <span class="px-2.5 py-1 rounded-md bg-slate-100 text-navy-800 font-mono text-xs font-semibold">Controle Térmico</span>
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div data-category="processos" class="skill-card print-reset bg-white rounded-2xl p-6 shadow-sm border border-slate-200/80 hover:border-electric-500/50 hover:shadow-md transition">
+                    <div class="w-11 h-11 rounded-xl bg-cyan-50 text-cyan-600 flex items-center justify-center text-lg mb-4 no-print">
+                        <i class="fa-solid fa-droplet"></i>
+                    </div>
+                    <h4 class="font-bold text-navy-900 text-lg mb-2">Higienização Técnica (CIP)</h4>
+                    <p class="text-slate-600 text-sm leading-relaxed mb-4">
+                        Execução completa de ciclos Clean-in-Place (CIP), controle de concentração química, temperatura e validação de limpeza para segurança alimentar.
+                    </p>
+                    <div class="flex flex-wrap gap-1.5">
+                        <span class="px-2.5 py-1 rounded-md bg-slate-100 text-navy-800 font-mono text-xs font-semibold">Sistema CIP</span>
+                        <span class="px-2.5 py-1 rounded-md bg-slate-100 text-navy-800 font-mono text-xs font-semibold">Sanitização</span>
+                    </div>
+                </div>
+
+                <!-- Card 4 -->
+                <div data-category="manutencao" class="skill-card print-reset bg-white rounded-2xl p-6 shadow-sm border border-slate-200/80 hover:border-electric-500/50 hover:shadow-md transition">
+                    <div class="w-11 h-11 rounded-xl bg-indigo-50 text-indigo-600 flex items-center justify-center text-lg mb-4 no-print">
+                        <i class="fa-solid fa-wrench"></i>
+                    </div>
+                    <h4 class="font-bold text-navy-900 text-lg mb-2">Manutenção Preventiva & Backup Técnico</h4>
+                    <p class="text-slate-600 text-sm leading-relaxed mb-4">
+                        Realização de manutenções menores diárias e reparos rápidos. Atuação autônoma como backup técnico no turno da noite (21h40 às 05h00).
+                    </p>
+                    <div class="flex flex-wrap gap-1.5">
+                        <span class="px-2.5 py-1 rounded-md bg-slate-100 text-navy-800 font-mono text-xs font-semibold">Backup Técnico</span>
+                        <span class="px-2.5 py-1 rounded-md bg-slate-100 text-navy-800 font-mono text-xs font-semibold">Redução de Paradas</span>
+                    </div>
+                </div>
+
+                <!-- Card 5 -->
+                <div data-category="processos" class="skill-card print-reset bg-white rounded-2xl p-6 shadow-sm border border-slate-200/80 hover:border-electric-500/50 hover:shadow-md transition">
+                    <div class="w-11 h-11 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center text-lg mb-4 no-print">
+                        <i class="fa-solid fa-shield-halved"></i>
+                    </div>
+                    <h4 class="font-bold text-navy-900 text-lg mb-2">Qualidade, BPF & Segurança</h4>
+                    <p class="text-slate-600 text-sm leading-relaxed mb-4">
+                        Cumprimento estrito das Boas Práticas de Fabricação (BPF), rastreabilidade de lote, inspeção visual/peso e protocolos de segurança NR-12.
+                    </p>
+                    <div class="flex flex-wrap gap-1.5">
+                        <span class="px-2.5 py-1 rounded-md bg-slate-100 text-navy-800 font-mono text-xs font-semibold">BPF</span>
+                        <span class="px-2.5 py-1 rounded-md bg-slate-100 text-navy-800 font-mono text-xs font-semibold">NR-12</span>
+                        <span class="px-2.5 py-1 rounded-md bg-slate-100 text-navy-800 font-mono text-xs font-semibold">ISO / Qualidade</span>
+                    </div>
+                </div>
+
+                <!-- Card 6 -->
+                <div data-category="tech" class="skill-card print-reset bg-white rounded-2xl p-6 shadow-sm border border-slate-200/80 hover:border-electric-500/50 hover:shadow-md transition">
+                    <div class="w-11 h-11 rounded-xl bg-sky-50 text-sky-600 flex items-center justify-center text-lg mb-4 no-print">
+                        <i class="fa-solid fa-laptop-code"></i>
+                    </div>
+                    <h4 class="font-bold text-navy-900 text-lg mb-2">Lógica de Programação & IHM</h4>
+                    <p class="text-slate-600 text-sm leading-relaxed mb-4">
+                        Conhecimentos em desenvolvimento web e lógica computacional aplicados à leitura rápida de alarmes, painéis IHM e diagnóstico estruturado de falhas.
+                    </p>
+                    <div class="flex flex-wrap gap-1.5">
+                        <span class="px-2.5 py-1 rounded-md bg-slate-100 text-navy-800 font-mono text-xs font-semibold">Análise Lógica</span>
+                        <span class="px-2.5 py-1 rounded-md bg-slate-100 text-navy-800 font-mono text-xs font-semibold">IHM / Automação</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SEÇÃO 2: TRAJETÓRIA PROFISSIONAL & CERTIFICAÇÕES -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
+            
+            <!-- Linha do Tempo Profissional (7 colunas) -->
+            <section id="experiencia" class="lg:col-span-7">
+                <span class="text-xs font-mono font-semibold uppercase tracking-wider text-electric-600">Histórico Comprovado</span>
+                <h3 class="text-2xl sm:text-3xl font-bold text-navy-900 mt-1 mb-6">Trajetória Profissional</h3>
+
+                <div class="relative border-l-2 border-electric-500/40 ml-3 space-y-8 pb-2">
+                    <!-- Experiência Atual -->
+                    <div class="relative pl-7">
+                        <span class="no-print absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-electric-500 ring-4 ring-sky-100"></span>
+                        <div class="print-reset bg-white rounded-2xl p-6 shadow-sm border border-slate-200/80">
+                            <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
+                                <span class="px-3 py-1 rounded-full text-xs font-mono font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200">
+                                    2009 – Atual (17 anos contínuos)
+                                </span>
+                                <span class="text-xs font-medium text-slate-500">Turno Noturno: 21h40 às 05h00</span>
+                            </div>
+                            <h4 class="text-xl font-bold text-navy-900">Operador de Máquinas Especializado</h4>
+                            <p class="text-sm font-medium text-electric-600 mb-4">Indústria Alimentícia & Lácteos — Linha de Iogurtes e Pudins</p>
+                            
+                            <ul class="space-y-2.5 text-sm text-slate-600">
+                                <li class="flex items-start gap-2.5">
+                                    <i class="fa-solid fa-check text-electric-500 mt-1 text-xs"></i>
+                                    <span>Operação, ajuste e monitoramento contínuo de linhas de envase e processos térmicos (<strong class="text-navy-800">Tetra Pak, Serac, Hamba e pasteurizadores</strong>).</span>
+                                </li>
+                                <li class="flex items-start gap-2.5">
+                                    <i class="fa-solid fa-check text-electric-500 mt-1 text-xs"></i>
+                                    <span>Execução rigorosa de higienização e limpeza técnica (<strong class="text-navy-800">CIP</strong>), garantindo conformidade microbiológica e segurança alimentar.</span>
+                                </li>
+                                <li class="flex items-start gap-2.5">
+                                    <i class="fa-solid fa-check text-electric-500 mt-1 text-xs"></i>
+                                    <span>Atuação como <strong class="text-navy-800">backup técnico da área no período noturno</strong>, diagnosticando falhas operacionais e executando manutenções preventivas menores para evitar paradas de linha.</span>
+                                </li>
+                                <li class="flex items-start gap-2.5">
+                                    <i class="fa-solid fa-check text-electric-500 mt-1 text-xs"></i>
+                                    <span>Compromisso integral com indicadores de qualidade, Boas Práticas de Fabricação (BPF) e normas de segurança do trabalho (NR-12).</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Experiência Anterior -->
+                    <div class="relative pl-7">
+                        <span class="no-print absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-slate-400 ring-4 ring-slate-100"></span>
+                        <div class="print-reset bg-white rounded-2xl p-6 shadow-sm border border-slate-200/80">
+                            <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
+                                <span class="px-3 py-1 rounded-full text-xs font-mono font-semibold bg-slate-100 text-slate-700">
+                                    2001 – 2005 (4 anos)
+                                </span>
+                                <span class="text-xs font-medium text-slate-500">Base Operacional</span>
+                            </div>
+                            <h4 class="text-lg font-bold text-navy-900">Operador de Máquinas</h4>
+                            <p class="text-sm font-medium text-slate-500 mb-3">Indústria Alimentícia</p>
+                            <p class="text-sm text-slate-600 leading-relaxed">
+                                Início da carreira industrial na operação de equipamentos de produção, controle de fluxo de linha, higienização operacional e cumprimento das normas de segurança e qualidade.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Certificações e Resumo de Competências (5 colunas) -->
+            <section id="certificacoes" class="lg:col-span-5 space-y-6">
+                <div>
+                    <span class="text-xs font-mono font-semibold uppercase tracking-wider text-electric-600">Conformidade & Segurança</span>
+                    <h3 class="text-2xl sm:text-3xl font-bold text-navy-900 mt-1 mb-6">Certificações Oficiais</h3>
+                </div>
+
+                <!-- Card NR-12 SENAI -->
+                <div class="print-reset bg-white rounded-2xl p-5 shadow-sm border border-slate-200/80 flex items-start gap-4">
+                    <div class="w-12 h-12 rounded-xl bg-navy-900 text-electric-400 flex items-center justify-center shrink-0 font-mono font-bold text-sm no-print">
+                        NR12
+                    </div>
+                    <div>
+                        <span class="inline-block px-2 py-0.5 rounded text-[11px] font-mono font-semibold bg-blue-50 text-blue-700 mb-1">SENAI</span>
+                        <h4 class="font-bold text-navy-900 text-base">Segurança no Trabalho em Máquinas e Equipamentos (NR-12)</h4>
+                        <p class="text-xs text-slate-600 mt-1 leading-relaxed">
+                            Capacitação técnica presencial/prática em dispositivos de segurança, bloqueios, proteções fixas/móveis e operação segura de maquinário industrial.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Card NR-12 GOV -->
+                <div class="print-reset bg-white rounded-2xl p-5 shadow-sm border border-slate-200/80 flex items-start gap-4">
+                    <div class="w-12 h-12 rounded-xl bg-emerald-900 text-emerald-300 flex items-center justify-center shrink-0 font-mono font-bold text-sm no-print">
+                        GOV
+                    </div>
+                    <div>
+                        <span class="inline-block px-2 py-0.5 rounded text-[11px] font-mono font-semibold bg-emerald-50 text-emerald-700 mb-1">Plataforma Gov.br</span>
+                        <h4 class="font-bold text-navy-900 text-base">Capacitação em Norma Regulamentadora NR-12</h4>
+                        <p class="text-xs text-slate-600 mt-1 leading-relaxed">
+                            Atualização oficial sobre requisitos mínimos para prevenção de acidentes e doenças do trabalho nas fases de utilização de máquinas e equipamentos.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Card Síntese das Competências (Texto pronto solicitado) -->
+                <div class="print-reset bg-navy-900 text-white rounded-2xl p-6 shadow-md border border-navy-700">
+                    <div class="flex items-center justify-between mb-3">
+                        <span class="text-xs font-mono text-electric-400 uppercase tracking-wider">Síntese de Competências</span>
+                        <button onclick="copySummary()" class="no-print text-xs text-slate-300 hover:text-white flex items-center gap-1.5 bg-navy-800 px-2.5 py-1 rounded-md border border-slate-700 cursor-pointer transition">
+                            <i class="fa-regular fa-copy"></i> <span id="copy-summary-text">Copiar texto</span>
+                        </button>
+                    </div>
+                    <p id="competencias-texto" class="text-xs sm:text-sm text-slate-300 print-text-dark leading-relaxed">
+                        Domínio na operação, ajuste e monitoramento de linhas de produção de lácteos (iogurtes e pudins), com vivência prática em equipamentos de envase e processos térmicos como Tetra Pak, Serac, Hamba e pasteurizadores. Experiência consolidada na execução de higienização e limpeza técnica (CIP), além da realização de manutenções preventivas de rotina e pequenos reparos operacionais para garantir a continuidade da produção. Forte comprometimento com qualidade, Boas Práticas de Fabricação e segurança do trabalho (NR-12 SENAI e Gov). Capacidade de diagnóstico rápido no turno noturno (21h40 às 05h00), atuando com autonomia como backup técnico da área.
+                    </p>
+                </div>
+            </section>
+        </div>
+
+        <!-- SEÇÃO 3: DIFERENCIAL TECNOLÓGICO (INDÚSTRIA 4.0 + PROGRAMAÇÃO) -->
+        <section id="diferencial-tech" class="print-reset bg-gradient-to-br from-navy-950 via-navy-900 to-navy-800 rounded-3xl p-8 sm:p-10 text-white shadow-xl border border-slate-800 relative overflow-hidden">
+            <div class="no-print absolute top-0 right-0 w-72 h-72 bg-electric-500/10 rounded-full blur-3xl pointer-events-none"></div>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center relative z-10">
+                <div class="lg:col-span-8 space-y-4">
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-electric-500/15 border border-electric-500/30 text-electric-400 text-xs font-mono">
+                        <i class="fa-solid fa-microchip"></i>
+                        <span>INDÚSTRIA 4.0 • CHÃO DE FÁBRICA + CÓDIGO</span>
+                    </div>
+                    <h3 class="text-2xl sm:text-3xl font-bold print-text-dark">
+                        Diferencial Tecnológico: Mentalidade de Programador na Operação Industrial
+                    </h3>
+                    <p class="text-slate-300 print-text-muted text-sm sm:text-base leading-relaxed">
+                        Além da experiência prática adquirida ao longo de mais de 20 anos operando linhas de lácteos, possuo formação e prática em <strong class="text-white print-text-dark">programação e desenvolvimento web</strong>. No ambiente industrial moderno, essa combinação se traduz em:
+                    </p>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2 text-sm">
+                        <div class="flex items-start gap-2.5 bg-white/5 print-reset p-3 rounded-xl border border-white/10">
+                            <i class="fa-solid fa-terminal text-electric-400 mt-1"></i>
+                            <span class="text-slate-200 print-text-dark">Facilidade na leitura de painéis digitais, IHM e árvores de alarmes.</span>
+                        </div>
+                        <div class="flex items-start gap-2.5 bg-white/5 print-reset p-3 rounded-xl border border-white/10">
+                            <i class="fa-solid fa-sitemap text-electric-400 mt-1"></i>
+                            <span class="text-slate-200 print-text-dark">Raciocínio lógico estruturado para isolar a causa raiz de falhas no turno noturno.</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-4 flex flex-col items-start lg:items-end justify-center">
+                    <div class="bg-navy-950/90 print-reset border border-slate-700/80 rounded-2xl p-6 w-full">
+                        <div class="text-xs font-mono text-slate-400 mb-1">PORTFÓLIO DE DESENVOLVIMENTO</div>
+                        <div class="font-bold text-base text-white print-text-dark mb-3">Projetos Web & Lógica</div>
+                        <p class="text-xs text-slate-400 print-text-muted mb-4">
+                            Conheça também meu portfólio dedicado à área de programação e desenvolvimento web.
+                        </p>
+                        <a href="https://misaandrejezieski.github.io/Misa/" target="_blank" rel="noopener noreferrer" class="w-full inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-electric-500 hover:bg-electric-400 text-navy-950 font-bold text-xs sm:text-sm transition">
+                            <span>misaandrejezieski.github.io/Misa</span>
+                            <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SEÇÃO 4: CONTATO & GERADOR DE MENSAGEM PARA RECRUTADORES -->
+        <section id="contato" class="no-print">
+            <div class="bg-white rounded-3xl p-6 sm:p-10 shadow-sm border border-slate-200/80">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+                    <!-- Informações de Contato -->
+                    <div class="lg:col-span-5 space-y-5">
+                        <div>
+                            <span class="text-xs font-mono font-semibold uppercase tracking-wider text-electric-600">Contratação Direta</span>
+                            <h3 class="text-2xl sm:text-3xl font-bold text-navy-900 mt-1">Vamos Conversar?</h3>
+                            <p class="text-sm text-slate-600 mt-2 leading-relaxed">
+                                Disponível para oportunidades presenciais nas regiões de <strong>Carambeí, Castro e Ponta Grossa (PR)</strong>, inclusive para turnos noturnos ou escalas industriais.
+                            </p>
+                        </div>
+
+                        <!-- Itens de contato editáveis/copiáveis -->
+                        <div class="space-y-3">
+                            <div class="p-3.5 rounded-xl bg-slate-50 border border-slate-200 flex items-center justify-between gap-2">
+                                <div class="flex items-center gap-3 overflow-hidden">
+                                    <div class="w-9 h-9 rounded-lg bg-electric-500/10 text-electric-600 flex items-center justify-center shrink-0">
+                                        <i class="fa-solid fa-location-dot"></i>
+                                    </div>
+                                    <div class="truncate">
+                                        <div class="text-[11px] text-slate-500">Localização</div>
+                                        <div class="text-sm font-semibold text-navy-900 truncate">Carambeí, Paraná - Brasil</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="p-3.5 rounded-xl bg-slate-50 border border-slate-200 flex items-center justify-between gap-2">
+                                <div class="flex items-center gap-3 overflow-hidden">
+                                    <div class="w-9 h-9 rounded-lg bg-electric-500/10 text-electric-600 flex items-center justify-center shrink-0">
+                                        <i class="fa-solid fa-globe"></i>
+                                    </div>
+                                    <div class="truncate">
+                                        <div class="text-[11px] text-slate-500">Portfólio Web</div>
+                                        <div class="text-sm font-semibold text-navy-900 truncate" id="portfolio-url">https://misaandrejezieski.github.io/Misa/</div>
+                                    </div>
+                                </div>
+                                <button onclick="copyText('https://misaandrejezieski.github.io/Misa/', this)" class="px-3 py-1.5 rounded-lg bg-white hover:bg-slate-100 border border-slate-200 text-xs font-semibold text-navy-800 shrink-0 cursor-pointer transition">
+                                    Copiar
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Personalize seu WhatsApp/E-mail rapidamente -->
+                        <div class="p-4 rounded-xl bg-amber-50/70 border border-amber-200/80">
+                            <div class="text-xs font-bold text-amber-900 mb-1 flex items-center gap-1.5">
+                                <i class="fa-solid fa-sliders"></i> Personalize antes de subir no GitHub
+                            </div>
+                            <p class="text-xs text-amber-800 leading-relaxed">
+                                Você pode editar diretamente no código HTML o seu número de WhatsApp e e-mail profissional para ativar o botão de envio direto abaixo.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Gerador de Mensagem Rápida para Recrutadores / Gupy / LinkedIn -->
+                    <div class="lg:col-span-7 bg-slate-50 rounded-2xl p-6 border border-slate-200/80 flex flex-col justify-between">
+                        <div>
+                            <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
+                                <h4 class="font-bold text-navy-900 text-base flex items-center gap-2">
+                                    <i class="fa-solid fa-bolt text-electric-500"></i>
+                                    Gerador de Apresentação para Recrutadores
+                                </h4>
+                                <span class="text-xs text-slate-500">Pronto para colar no LinkedIn, Gupy ou WhatsApp</span>
+                            </div>
+
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-3">
+                                <div>
+                                    <label class="block text-xs font-semibold text-slate-600 mb-1">Empresa alvo (opcional)</label>
+                                    <input type="text" id="target-company" placeholder="Ex: Frísia, Lactalis, Castrolanda, Ambev..." oninput="updatePitch()" class="w-full px-3 py-2 rounded-lg bg-white border border-slate-300 text-sm focus:outline-none focus:border-electric-500">
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-semibold text-slate-600 mb-1">Vaga desejada</label>
+                                    <input type="text" id="target-role" value="Operador de Máquinas" oninput="updatePitch()" class="w-full px-3 py-2 rounded-lg bg-white border border-slate-300 text-sm focus:outline-none focus:border-electric-500">
+                                </div>
+                            </div>
+
+                            <label class="block text-xs font-semibold text-slate-600 mb-1">Mensagem gerada:</label>
+                            <textarea id="pitch-output" rows="5" readonly class="w-full p-3.5 rounded-xl bg-white border border-slate-300 text-xs sm:text-sm text-slate-700 leading-relaxed focus:outline-none"></textarea>
+                        </div>
+
+                        <div class="flex flex-wrap items-center justify-between gap-3 mt-4">
+                            <button onclick="copyPitch()" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-navy-900 hover:bg-navy-800 text-white text-xs sm:text-sm font-semibold transition cursor-pointer">
+                                <i class="fa-regular fa-copy"></i>
+                                <span id="copy-pitch-btn">Copiar Mensagem de Apresentação</span>
+                            </button>
+                            <span id="toast-feedback" class="text-xs font-semibold text-emerald-600 opacity-0 transition-opacity duration-300">
+                                <i class="fa-solid fa-circle-check"></i> Copiado para a área de transferência!
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- RODAPÉ -->
+    <footer class="no-print bg-navy-950 text-slate-400 py-8 border-t border-slate-800 text-xs">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div>
+                <span class="text-white font-semibold">Misael Andrejezieski</span> • Operador de Máquinas Especializado & Desenvolvedor Web
+            </div>
+            <div class="flex items-center gap-4">
+                <span>Carambeí - PR</span>
+                <span>•</span>
+                <a href="https://misaandrejezieski.github.io/Misa/" target="_blank" rel="noopener noreferrer" class="text-electric-400 hover:underline">
+                    Portfólio Dev
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- SCRIPTS DE INTERATIVIDADE -->
+    <script>
+        // 1. Filtro interativo de Competências Técnicas
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const skillCards = document.querySelectorAll('.skill-card');
+
+        filterButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Atualiza estado visual dos botões
+                filterButtons.forEach(b => {
+                    b.classList.remove('bg-navy-900', 'text-white');
+                    b.classList.add('bg-white', 'text-slate-600', 'border', 'border-slate-200');
+                });
+                btn.classList.remove('bg-white', 'text-slate-600', 'border', 'border-slate-200');
+                btn.classList.add('bg-navy-900', 'text-white');
+
+                const filter = btn.getAttribute('data-filter');
+
+                skillCards.forEach(card => {
+                    if (filter === 'all' || card.getAttribute('data-category') === filter) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // 2. Função de cópia compatível com iFrames e navegadores modernos
+        function fallbackCopyText(text) {
+            const textArea = document.createElement('textarea');
+            textArea.value = text;
+            textArea.style.position = 'fixed';
+            textArea.style.left = '-9999px';
+            document.body.appendChild(textArea);
+            textArea.focus();
+            textArea.select();
+            try {
+                document.execCommand('copy');
+            } catch (err) {
+                console.error('Erro ao copiar texto', err);
+            }
+            document.body.removeChild(textArea);
+        }
+
+        function copyText(text, buttonEl) {
+            fallbackCopyText(text);
+            const originalText = buttonEl.innerText;
+            buttonEl.innerText = 'Copiado!';
+            setTimeout(() => {
+                buttonEl.innerText = originalText;
+            }, 2000);
+        }
+
+        function copySummary() {
+            const text = document.getElementById('competencias-texto').innerText.trim();
+            fallbackCopyText(text);
+            const label = document.getElementById('copy-summary-text');
+            label.innerText = 'Copiado!';
+            setTimeout(() => {
+                label.innerText = 'Copiar texto';
+            }, 2000);
+        }
+
+        // 3. Gerador dinâmico de mensagem para recrutadores
+        function updatePitch() {
+            const company = document.getElementById('target-company').value.trim();
+            const role = document.getElementById('target-role').value.trim() || 'Operador de Máquinas';
+            const companyGreeting = company ? ` na ${company}` : '';
+
+            const message = `Olá, tudo bem? Tenho interesse em oportunidades como ${role}${companyGreeting}. Possuo mais de 20 anos de experiência na indústria alimentícia (2001–2005 e de 2009 até hoje), com domínio prático em máquinas Tetra Pak, Serac, Hamba e pasteurizadores, além de higienização CIP, manutenções preventivas menores e certificação NR-12 (SENAI e Gov). Atuo no turno noturno (21h40 às 05h00) como backup técnico da área e resido em Carambeí - PR, com fácil acesso a Castro e Ponta Grossa. Segue meu currículo online para avaliação: https://misaandrejezieski.github.io/Misa/`;
+
+            document.getElementById('pitch-output').value = message;
+        }
+
+        function copyPitch() {
+            const pitchText = document.getElementById('pitch-output').value;
+            fallbackCopyText(pitchText);
+            const toast = document.getElementById('toast-feedback');
+            toast.style.opacity = '1';
+            setTimeout(() => {
+                toast.style.opacity = '0';
+            }, 2500);
+        }
+
+        // Inicializa o texto do gerador ao carregar a página
+        window.addEventListener('DOMContentLoaded', updatePitch);
+    </script>
+</body>
+</html>
