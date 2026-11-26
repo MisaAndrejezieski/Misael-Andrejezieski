@@ -58,7 +58,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const target = companyName ? `na ${companyName}` : "na empresa";
 
     pitchOutput.value =
-      `Olá! Sou Misael Andrejezieski, Operador de Máquinas com mais de 20 anos de experiência na indústria alimentícia (linhas de lácteos, envase Tetra Pak, Serac, Hamba e pasteurizadores), processos CIP e certificação NR-12 (SENAI e Gov). Atuo no turno noturno (21h40 às 05h00) também como backup técnico da área. Gostaria de deixar meu currículo online à disposição para oportunidades ${target}: https://misaandrejezieski.github.io/Misa/`;
+      `Olá! Sou Misael Andrejezieski, Operador de Máquinas com mais de 20 anos de experiência na indústria alimentícia (linhas de lácteos, envase Tetra Pak, Serac, Hamba e pasteurizadores), processos CIP e certificação NR-12 (SENAI e Gov). Atuo no turno noturno (21h40 às 05h00) como backup técnico da área e sou formado em Análise e Desenvolvimento de Sistemas (UniCesumar), com conhecimentos em Power BI, Python e Java. Gostaria de deixar meu currículo online à disposição para oportunidades ${target}: https://misaandrejezieski.github.io/Misa/`;
   }
 
   if (companyInput && pitchOutput) {
