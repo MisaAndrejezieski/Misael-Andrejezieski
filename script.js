@@ -53,44 +53,4 @@ document.addEventListener("DOMContentLoaded", () => {
       }, 2000);
     });
   }
-
-  // 4. Gerador de Mensagem Personalizada para Recrutadores
-  const companyInput = document.getElementById("company-input");
-  const pitchOutput = document.getElementById("pitch-output");
-  const btnCopyPitch = document.getElementById("btn-copy-pitch");
-  const portfolioUrl = "https://misaandrejezieski.github.io/Misa/";
-
-  function buildPitch() {
-    if (!companyInput || !pitchOutput) return;
-
-    const company = companyInput.value.trim();
-    const destination = company ? `na ${company}` : "na empresa";
-
-    pitchOutput.value =
-      `Olá! Sou Misael Andrejezieski, Operador de Máquinas com mais de 20 anos de experiência na indústria alimentícia (linhas de lácteos, envase Tetra Pak, Serac e Hamba, conhecimentos em elétrica e eletrônica, higienização CIP e certificação NR-12 pelo SENAI e Gov). Atuo no turno noturno (21h40 às 05h00) como backup técnico e referência da equipe, conduzindo DSQs, mediando atritos internos e organizando a estratégia do turno para entregar as metas da gestão. Sou formado em Análise e Desenvolvimento de Sistemas (UniCesumar), com domínio do Pacote Office (Excel, Word e PowerPoint) e conhecimentos em Power BI, Python, Java, HTML, CSS e JavaScript. Deixo meu currículo à disposição para oportunidades ${destination}: ${portfolioUrl}`;
-  }
-
-  if (companyInput && pitchOutput) {
-    buildPitch();
-    companyInput.addEventListener("input", buildPitch);
-  }
-
-  if (btnCopyPitch && pitchOutput) {
-    btnCopyPitch.addEventListener("click", async () => {
-      const originalLabel = btnCopyPitch.innerText;
-
-      try {
-        await navigator.clipboard.writeText(pitchOutput.value);
-        btnCopyPitch.innerText = "Copiado!";
-      } catch {
-        pitchOutput.select();
-        document.execCommand("copy");
-        btnCopyPitch.innerText = "Copiado!";
-      }
-
-      setTimeout(() => {
-        btnCopyPitch.innerText = originalLabel;
-      }, 2000);
-    });
-  }
 });
