@@ -15,7 +15,7 @@
   <header class="navbar no-print">
     <div class="container nav-inner">
       <a href="#inicio" class="brand">
-        <span class="brand-mark"></span>
+        <span class="brand-mark" aria-hidden="true"></span>
         <span>MISAEL</span><span class="brand-accent">.Andrejezieski</span>
       </a>
 
@@ -23,6 +23,7 @@
         <a href="#competencias">Competências</a>
         <a href="#experiencia">Experiência</a>
         <a href="#formacao">Formação</a>
+        <a href="#jogo">Mini-Jogo</a>
         <a href="#contato">Contato</a>
       </nav>
 
@@ -32,20 +33,18 @@
     </div>
   </header>
 
-  <main class="container main-content">
+  <main id="inicio" class="container main-content">
 
     <!-- Hero -->
-    <section id="inicio" class="hero-card">
-      <div class="hero-top">
-        <div class="hero-badges">
-          <span class="pill pill-cyan">+20 Anos na Indústria</span>
-          <span class="pill pill-emerald">ADS • UniCesumar (2023)</span>
-          <span class="pill">Carambeí, PR</span>
-          <!--span class="pill">Noturno • 21h40 – 05h00</span-->
-        </div>
+    <section class="hero-card" aria-labelledby="hero-name">
+      <div class="hero-badges">
+        <span class="pill pill-cyan">+20 Anos na Indústria</span>
+        <span class="pill pill-emerald">ADS • UniCesumar (2023)</span>
+        <span class="pill">Carambeí, PR</span>
+        <!--span class="pill">Noturno • 21h40 – 05h00</span-->
       </div>
 
-      <h1 class="hero-title">Misael Andrejezieski</h1>
+      <h1 id="hero-name" class="hero-title">Misael Andrejezieski</h1>
       <p class="hero-role">
         Operador de Máquinas Especializado (Lácteos & Envase) • Backup Técnico & Referência Noturna • Analista e Desenvolvedor de Sistemas
       </p>
@@ -61,7 +60,7 @@
         </a>
       </div>
 
-      <div class="metrics-strip">
+      <div class="metrics-strip" role="region" aria-label="Indicadores do perfil">
         <div class="metric-item">
           <span class="metric-value">20+</span>
           <span class="metric-label">Anos de Chão de Fábrica</span>
@@ -82,18 +81,18 @@
     </section>
 
     <!-- Competências -->
-    <section id="competencias" class="section-block">
+    <section id="competencias" class="section-block" aria-labelledby="title-competencias">
       <div class="section-head">
         <div>
           <span class="section-kicker">HABILIDADES & EXECUÇÃO</span>
-          <h2>Competências Técnicas e Operacionais</h2>
+          <h2 id="title-competencias">Competências Técnicas e Operacionais</h2>
         </div>
 
         <div class="filter-bar no-print" role="group" aria-label="Filtrar competências">
-          <button class="filter-chip active" data-filter="all" type="button">Todas</button>
-          <button class="filter-chip" data-filter="envase" type="button">Envase & Elétrica</button>
-          <button class="filter-chip" data-filter="operacao" type="button">Operação & Turno</button>
-          <button class="filter-chip" data-filter="sistemas" type="button">Office, BI & Dev</button>
+          <button class="filter-chip active" data-filter="all" type="button" aria-pressed="true">Todas</button>
+          <button class="filter-chip" data-filter="envase" type="button" aria-pressed="false">Envase & Elétrica</button>
+          <button class="filter-chip" data-filter="operacao" type="button" aria-pressed="false">Operação & Turno</button>
+          <button class="filter-chip" data-filter="sistemas" type="button" aria-pressed="false">Office, BI & Dev</button>
         </div>
       </div>
 
@@ -139,7 +138,10 @@
       <div class="copy-panel no-print">
         <div class="copy-panel-head">
           <span class="mono-label">TEXTO RESUMO PARA GUPY / LINKEDIN</span>
-          <button id="btn-copy-summary" class="btn btn-secondary" type="button">Copiar Competências</button>
+          <div class="copy-actions">
+            <span id="copy-status" class="sr-only" role="status" aria-live="polite"></span>
+            <button id="btn-copy-summary" class="btn btn-secondary" type="button">Copiar Competências</button>
+          </div>
         </div>
         <p id="summary-text" class="copy-body">
           Domínio na operação, ajuste e monitoramento de linhas de produção de lácteos (iogurtes e pudins), com vivência prática em equipamentos de envase como Tetra Pak, Serac e Hamba, além de conhecimentos em elétrica e eletrônica. Experiência consolidada na execução de higienização e limpeza técnica (CIP) e na realização de manutenções preventivas de rotina e pequenos reparos operacionais para garantir a continuidade da produção e reduzir paradas de máquina. Forte comprometimento com as metas de qualidade, Boas Práticas de Fabricação e normas de segurança do trabalho, respaldado pela certificação NR-12 (SENAI e Gov). Atuação no turno noturno (21h40 às 05h00) com alta autonomia como backup técnico e referência da equipe, conduzindo DSQs, administrando atritos internos e organizando a estratégia do turno para entregar as metas da gestão — unindo a prática industrial à graduação em Análise e Desenvolvimento de Sistemas (UniCesumar), domínio do Pacote Office (Excel, Word e PowerPoint) e conhecimentos em Power BI, Python, Java, HTML, CSS e JavaScript.
@@ -148,11 +150,11 @@
     </section>
 
     <!-- Experiência -->
-    <section id="experiencia" class="section-block">
+    <section id="experiencia" class="section-block" aria-labelledby="title-experiencia">
       <div class="section-head">
         <div>
           <span class="section-kicker">HISTÓRICO PROFISSIONAL</span>
-          <h2>Experiência na Indústria</h2>
+          <h2 id="title-experiencia">Experiência na Indústria</h2>
         </div>
       </div>
 
@@ -189,11 +191,11 @@
     </section>
 
     <!-- Formação e Certificações -->
-    <section id="formacao" class="section-block">
+    <section id="formacao" class="section-block" aria-labelledby="title-formacao">
       <div class="section-head">
         <div>
           <span class="section-kicker">QUALIFICAÇÕES</span>
-          <h2>Formação Acadêmica e Certificações</h2>
+          <h2 id="title-formacao">Formação Acadêmica e Certificações</h2>
         </div>
       </div>
 
@@ -224,12 +226,35 @@
       </div>
     </section>
 
+    <!-- Mini-Jogo Interativo em Canvas + JS -->
+    <section id="jogo" class="section-block no-print" aria-labelledby="title-jogo">
+      <div class="section-head">
+        <div>
+          <span class="section-kicker">HTML5 CANVAS & JAVASCRIPT</span>
+          <h2 id="title-jogo">Rota da Madrugada</h2>
+        </div>
+
+        <div class="game-controls">
+          <span class="game-stat">PONTOS: <strong id="game-score">000</strong></span>
+          <span class="game-stat">RECORDE: <strong id="game-best">000</strong></span>
+          <button id="btn-game-toggle" class="btn btn-primary" type="button">Iniciar Jogo</button>
+        </div>
+      </div>
+
+      <div class="game-card">
+        <canvas id="game-canvas" width="900" height="360" aria-label="Mini-jogo Rota da Madrugada"></canvas>
+        <p class="game-help">
+          Use <strong>Setas ↑/↓</strong>, <strong>W/S</strong> ou <strong>arraste no toque/mouse</strong> para desviar dos blocos vermelhos e coletar os bônus verdes (<strong>+3 pts</strong>). Pressione <strong>Espaço</strong> ou <strong>R</strong> para reiniciar após o fim da rodada.
+        </p>
+      </div>
+    </section>
+
     <!-- Contato Direto -->
-    <section id="contato" class="section-block">
+    <section id="contato" class="section-block" aria-labelledby="title-contato">
       <div class="section-head">
         <div>
           <span class="section-kicker">CONEXÃO DIRETA</span>
-          <h2>Contato</h2>
+          <h2 id="title-contato">Contato</h2>
         </div>
       </div>
 
