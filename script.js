@@ -61,10 +61,14 @@ document.addEventListener("DOMContentLoaded", () => {
       try {
         await copyToClipboard(text);
         btnCopySummary.innerText = "Copiado!";
-        if (copyStatus) copyStatus.textContent = "Resumo de competências copiado para a área de transferência.";
+        if (copyStatus) {
+          copyStatus.textContent = "Resumo de competências copiado para a área de transferência.";
+        }
       } catch {
         btnCopySummary.innerText = "Selecione e copie";
-        if (copyStatus) copyStatus.textContent = "Não foi possível copiar automaticamente.";
+        if (copyStatus) {
+          copyStatus.textContent = "Não foi possível copiar automaticamente.";
+        }
       }
 
       setTimeout(() => {
@@ -73,19 +77,38 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // 4. Mini-Jogo "Rota da Madrugada" (HTML5 Canvas)
+  // 4. Simulador de Linha: Fluxo de Envase & Estabilidade
   const canvas = document.getElementById("game-canvas");
   const btnToggle = document.getElementById("btn-game-toggle");
   const scoreEl = document.getElementById("game-score");
   const bestEl = document.getElementById("game-best");
+  const stabilityEl = document.getElementById("game-stability");
 
-  if (canvas && btnToggle && scoreEl && bestEl) {
+  if (canvas && btnToggle && scoreEl && bestEl && stabilityEl) {
     const ctx = canvas.getContext("2d");
     const keys = Object.create(null);
 
+    let viewWidth = 900;
+    let viewHeight = 320;
+
+    function resizeCanvas() {
+      const rect = canvas.getBoundingClientRect();
+      if (!rect.width || !rect.height) return;
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      viewWidth = rect.width;
+      viewHeight = rect.height;
+      canvas.width = Math.round(viewWidth * dpr);
+      canvas.height = Math.round(viewHeight * dpr);
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+      const minY = 36;
+      const maxY = Math.max(minY, viewHeight - 36 - head.h);
+      head.y = Math.max(minY, Math.min(maxY, head.y));
+    }
+
     let bestScore = 0;
     try {
-      bestScore = Math.max(0, Number(localStorage.getItem("rota_madrugada_best") || 0));
+      bestScore = Math.max(0, Number(localStorage.getItem("fluxo_envase_best") || 0));
     } catch {
       bestScore = 0;
     }
@@ -96,67 +119,101 @@ document.addEventListener("DOMContentLoaded", () => {
 
     bestEl.textContent = formatScore(bestScore);
 
-    const player = {
-      x: 84,
-      y: canvas.height / 2 - 17,
-      size: 34,
-      speed: 6.2
+    const head = {
+      x: 72,
+      y: 140,
+      w: 36,
+      h: 38,
+      speed: 6.4
     };
 
-    let obstacles = [];
-    let bonuses = [];
+    let items = [];
     let score = 0;
+    let stability = 100;
     let running = false;
     let gameOver = false;
-    let obsTimer = 0;
-    let bonusTimer = 0;
-    let lastTime = performance.now();
+    let spawnTimer = 0;
+    let beltOffset = 0;
+    let lastTime = 0;
+    let rafId = null;
 
-    function addPoints(pts) {
+    resizeCanvas();
+    head.y = viewHeight / 2 - head.h / 2;
+
+    function updateStability(delta) {
+      stability = Math.max(0, Math.min(100, stability + delta));
+      stabilityEl.textContent = `${Math.round(stability)}%`;
+      if (stability <= 0) {
+        gameOver = true;
+        running = false;
+        btnToggle.textContent = "Reiniciar Turno";
+      }
+    }
+
+    function addScore(pts) {
       score += pts;
       scoreEl.textContent = formatScore(score);
       if (score > bestScore) {
         bestScore = score;
         bestEl.textContent = formatScore(bestScore);
         try {
-          localStorage.setItem("rota_madrugada_best", String(bestScore));
+          localStorage.setItem("fluxo_envase_best", String(bestScore));
         } catch {
-          // Ignora erro de armazenamento privado
+          // Ignora bloqueio de armazenamento
         }
       }
     }
 
-    function resetGame(startNow = true) {
-      player.y = canvas.height / 2 - player.size / 2;
-      obstacles = [];
-      bonuses = [];
-      score = 0;
-      scoreEl.textContent = "000";
-      gameOver = false;
-      obsTimer = 0;
-      bonusTimer = 0;
-      lastTime = performance.now();
-      running = startNow;
-      btnToggle.textContent = running ? "Reiniciar" : "Iniciar Jogo";
+    function stopLoop() {
+      if (rafId !== null) {
+        cancelAnimationFrame(rafId);
+        rafId = null;
+      }
     }
 
-    function rectsOverlap(a, b) {
+    function startLoop() {
+      if (rafId === null) {
+        lastTime = performance.now();
+        rafId = requestAnimationFrame(loop);
+      }
+    }
+
+    function resetGame(startNow = true) {
+      resizeCanvas();
+      head.y = viewHeight / 2 - head.h / 2;
+      items = [];
+      score = 0;
+      stability = 100;
+      scoreEl.textContent = "000";
+      stabilityEl.textContent = "100%";
+      gameOver = false;
+      spawnTimer = 0;
+      running = startNow;
+      btnToggle.textContent = running ? "Reiniciar Turno" : "Iniciar Turno";
+      drawScene();
+      if (running) {
+        startLoop();
+      } else {
+        stopLoop();
+      }
+    }
+
+    function overlaps(a, b) {
       return (
         a.x < b.x + b.w &&
-        a.x + player.size > b.x &&
+        a.x + a.w > b.x &&
         a.y < b.y + b.h &&
-        a.y + player.size > b.y
+        a.y + a.h > b.y
       );
     }
 
-    function drawRoundedRect(x, y, w, h, r) {
+    function drawRoundedBox(x, y, w, h, r) {
       if (typeof ctx.roundRect === "function") {
         ctx.beginPath();
         ctx.roundRect(x, y, w, h, r);
         ctx.fill();
         return;
       }
-
       const radius = Math.min(r, w / 2, h / 2);
       ctx.beginPath();
       ctx.moveTo(x + radius, y);
@@ -169,69 +226,77 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     function drawScene() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.clearRect(0, 0, viewWidth, viewHeight);
 
-      // Trilhas horizontais sutis
-      ctx.save();
-      ctx.setLineDash([14, 14]);
-      ctx.strokeStyle = "rgba(148, 163, 184, 0.12)";
-      ctx.lineWidth = 2;
-      [canvas.height * 0.25, canvas.height * 0.5, canvas.height * 0.75].forEach((lineY) => {
+      const trackTop = 30;
+      const trackHeight = Math.max(80, viewHeight - 60);
+      ctx.fillStyle = "rgba(15, 23, 42, 0.55)";
+      ctx.fillRect(0, trackTop, viewWidth, trackHeight);
+
+      ctx.strokeStyle = "rgba(148, 163, 184, 0.14)";
+      ctx.lineWidth = 1.5;
+      ctx.beginPath();
+      ctx.moveTo(0, trackTop);
+      ctx.lineTo(viewWidth, trackTop);
+      ctx.moveTo(0, trackTop + trackHeight);
+      ctx.lineTo(viewWidth, trackTop + trackHeight);
+      ctx.stroke();
+
+      ctx.strokeStyle = "rgba(34, 211, 238, 0.08)";
+      ctx.lineWidth = 1;
+      const step = 48;
+      for (let x = -beltOffset; x < viewWidth; x += step) {
         ctx.beginPath();
-        ctx.moveTo(0, lineY);
-        ctx.lineTo(canvas.width, lineY);
+        ctx.moveTo(x, trackTop);
+        ctx.lineTo(x, trackTop + trackHeight);
         ctx.stroke();
-      });
-      ctx.restore();
+      }
 
-      // Jogador (ciano)
+      // Cabeçote operacional (ciano)
       ctx.save();
       ctx.shadowColor = "rgba(34, 211, 238, 0.45)";
-      ctx.shadowBlur = 14;
+      ctx.shadowBlur = 12;
       ctx.fillStyle = "#22d3ee";
-      drawRoundedRect(player.x, player.y, player.size, player.size, 8);
+      drawRoundedBox(head.x, head.y, head.w, head.h, 8);
       ctx.restore();
 
-      // Obstáculos (vermelho)
-      ctx.fillStyle = "#f87171";
-      obstacles.forEach((o) => {
-        drawRoundedRect(o.x, o.y, o.w, o.h, 6);
+      // Lotes conformes (esmeralda) e falhas (vermelho)
+      items.forEach((item) => {
+        if (item.type === "lot") {
+          ctx.save();
+          ctx.shadowColor = "rgba(52, 211, 153, 0.35)";
+          ctx.shadowBlur = 10;
+          ctx.fillStyle = "#34d399";
+          drawRoundedBox(item.x, item.y, item.w, item.h, 7);
+          ctx.restore();
+        } else {
+          ctx.fillStyle = "#f87171";
+          drawRoundedBox(item.x, item.y, item.w, item.h, 6);
+        }
       });
-
-      // Bônus (esmeralda)
-      ctx.save();
-      ctx.shadowColor = "rgba(52, 211, 153, 0.4)";
-      ctx.shadowBlur = 10;
-      ctx.fillStyle = "#34d399";
-      bonuses.forEach((b) => {
-        ctx.beginPath();
-        ctx.arc(b.x + b.w / 2, b.y + b.h / 2, b.w / 2, 0, Math.PI * 2);
-        ctx.fill();
-      });
-      ctx.restore();
 
       if (!running && !gameOver) {
-        ctx.fillStyle = "rgba(6, 10, 20, 0.68)";
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        ctx.fillStyle = "rgba(6, 10, 20, 0.72)";
+        ctx.fillRect(0, 0, viewWidth, viewHeight);
         ctx.fillStyle = "#f8fafc";
-        ctx.font = "700 21px Inter, sans-serif";
+        ctx.font = "700 19px Inter, sans-serif";
         ctx.textAlign = "center";
-        ctx.fillText("Clique em 'Iniciar Jogo' para começar", canvas.width / 2, canvas.height / 2);
+        ctx.fillText("Clique em 'Iniciar Turno' para operar a linha", viewWidth / 2, viewHeight / 2);
       }
 
       if (gameOver) {
-        ctx.fillStyle = "rgba(6, 10, 20, 0.8)";
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        ctx.fillStyle = "rgba(6, 10, 20, 0.82)";
+        ctx.fillRect(0, 0, viewWidth, viewHeight);
         ctx.fillStyle = "#f87171";
-        ctx.font = "700 23px Inter, sans-serif";
+        ctx.font = "700 21px Inter, sans-serif";
         ctx.textAlign = "center";
-        ctx.fillText("Parada na linha!", canvas.width / 2, canvas.height / 2 - 14);
+        ctx.fillText("Estabilidade da linha zerada!", viewWidth / 2, viewHeight / 2 - 12);
         ctx.fillStyle = "#cbd5e1";
-        ctx.font = "500 15px Inter, sans-serif";
+        ctx.font = "500 14px Inter, sans-serif";
         ctx.fillText(
-          `Pontuação final: ${score} — clique em "Reiniciar" ou pressione Espaço`,
-          canvas.width / 2,
-          canvas.height / 2 + 18
+          `Meta alcançada: ${score} — clique em "Reiniciar Turno" ou pressione Espaço`,
+          viewWidth / 2,
+          viewHeight / 2 + 18
         );
       }
     }
@@ -239,67 +304,77 @@ document.addEventListener("DOMContentLoaded", () => {
     function update(dt) {
       if (!running || gameOver) return;
 
-      if (keys["ArrowUp"] || keys["KeyW"]) player.y -= player.speed;
-      if (keys["ArrowDown"] || keys["KeyS"]) player.y += player.speed;
+      const frameFactor = dt / 16.67;
+      if (keys["ArrowUp"] || keys["KeyW"]) head.y -= head.speed * frameFactor;
+      if (keys["ArrowDown"] || keys["KeyS"]) head.y += head.speed * frameFactor;
 
-      const margin = 14;
-      player.y = Math.max(margin, Math.min(canvas.height - player.size - margin, player.y));
+      const minY = 38;
+      const maxY = Math.max(minY, viewHeight - 38 - head.h);
+      head.y = Math.max(minY, Math.min(maxY, head.y));
 
-      const baseSpeed = 4.8 + Math.min(score * 0.1, 5.8);
+      const speed = 4.6 + Math.min(score * 0.06, 5.2);
+      beltOffset = (beltOffset + speed * frameFactor) % 48;
 
-      obsTimer += dt;
-      const obsInterval = Math.max(540, 1140 - score * 16);
-      if (obsTimer >= obsInterval) {
-        obsTimer = 0;
-        const h = 38 + Math.random() * 54;
-        const y = margin + Math.random() * (canvas.height - margin * 2 - h);
-        obstacles.push({ x: canvas.width + 14, y, w: 28, h });
+      spawnTimer += dt;
+      const interval = Math.max(580, 1120 - score * 10);
+      if (spawnTimer >= interval) {
+        spawnTimer = 0;
+        const isLot = Math.random() < 0.62;
+        const size = isLot ? 26 : 32;
+        const y = minY + Math.random() * Math.max(1, maxY - minY);
+        items.push({
+          type: isLot ? "lot" : "fault",
+          x: viewWidth + 16,
+          y,
+          w: size,
+          h: size
+        });
       }
 
-      bonusTimer += dt;
-      if (bonusTimer >= 1650) {
-        bonusTimer = 0;
-        const y = margin + 12 + Math.random() * (canvas.height - margin * 2 - 24);
-        bonuses.push({ x: canvas.width + 14, y, w: 22, h: 22 });
-      }
+      for (let i = items.length - 1; i >= 0; i--) {
+        const item = items[i];
+        item.x -= speed * frameFactor;
 
-      for (let i = obstacles.length - 1; i >= 0; i--) {
-        const o = obstacles[i];
-        o.x -= baseSpeed;
-        if (rectsOverlap(player, o)) {
-          gameOver = true;
-          running = false;
-          btnToggle.textContent = "Reiniciar";
-          break;
+        if (overlaps(head, item)) {
+          items.splice(i, 1);
+          if (item.type === "lot") {
+            addScore(2);
+            updateStability(4);
+          } else {
+            updateStability(-25);
+          }
+          continue;
         }
-        if (o.x + o.w < 0) {
-          obstacles.splice(i, 1);
-          addPoints(1);
-        }
-      }
 
-      for (let i = bonuses.length - 1; i >= 0; i--) {
-        const b = bonuses[i];
-        b.x -= baseSpeed * 0.92;
-        if (rectsOverlap(player, b)) {
-          bonuses.splice(i, 1);
-          addPoints(3);
-        } else if (b.x + b.w < 0) {
-          bonuses.splice(i, 1);
+        if (item.x + item.w < 0) {
+          items.splice(i, 1);
+          if (item.type === "lot") {
+            updateStability(-10);
+          }
         }
       }
     }
 
     function loop(now) {
-      const dt = Math.min(50, now - lastTime);
+      const dt = Math.min(50, Math.max(0, now - lastTime));
       lastTime = now;
       update(dt);
       drawScene();
-      requestAnimationFrame(loop);
+
+      if (running) {
+        rafId = requestAnimationFrame(loop);
+      } else {
+        rafId = null;
+      }
     }
 
     btnToggle.addEventListener("click", () => {
       resetGame(true);
+    });
+
+    window.addEventListener("resize", () => {
+      resizeCanvas();
+      drawScene();
     });
 
     window.addEventListener("keydown", (e) => {
@@ -319,28 +394,28 @@ document.addEventListener("DOMContentLoaded", () => {
       keys[e.code] = false;
     });
 
-    function movePlayerByPointer(clientY) {
+    function moveByPointer(clientY) {
       if (!running) return;
       const rect = canvas.getBoundingClientRect();
       if (!rect.height) return;
       const relY = clientY - rect.top;
-      const scaleY = canvas.height / rect.height;
-      player.y = relY * scaleY - player.size / 2;
+      const minY = 38;
+      const maxY = Math.max(minY, viewHeight - 38 - head.h);
+      head.y = Math.max(minY, Math.min(maxY, relY - head.h / 2));
     }
 
     canvas.addEventListener("touchmove", (e) => {
       if (!running || !e.touches.length) return;
       e.preventDefault();
-      movePlayerByPointer(e.touches[0].clientY);
+      moveByPointer(e.touches[0].clientY);
     }, { passive: false });
 
     canvas.addEventListener("pointermove", (e) => {
       if (e.pointerType === "mouse" && e.buttons === 1) {
-        movePlayerByPointer(e.clientY);
+        moveByPointer(e.clientY);
       }
     });
 
     drawScene();
-    requestAnimationFrame(loop);
   }
 });
